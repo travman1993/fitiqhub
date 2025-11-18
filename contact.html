@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact FitIQ Hub - Get in touch with questions, feedback, or suggestions about our health calculators and fitness articles.">
+    <meta name="keywords" content="contact, support, feedback, email">
+    <meta name="author" content="FitIQ Hub">
+    
+    <title>Contact Us - FitIQ Hub</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="public/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/globals.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/articles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--bg-darker);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            font-weight: var(--fw-semibold);
+            color: var(--text-white);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: var(--spacing-md);
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-white);
+            font-family: var(--font-body);
+            font-size: var(--fs-base);
+            transition: all var(--transition-base);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 12px rgba(0, 230, 118, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: var(--spacing-lg) var(--spacing-xl);
+            background-color: var(--primary-color);
+            color: #000000;
+            font-weight: var(--fw-bold);
+            font-size: var(--fs-base);
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            font-family: var(--font-heading);
+        }
+
+        .form-submit:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 0 8px 24px rgba(0, 230, 118, 0.3);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-3xl);
+        }
+
+        .info-card {
+            background-color: var(--bg-darker);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .info-card h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .info-card p {
+            color: var(--text-light-gray);
+            margin: 0;
+        }
+
+        .info-card a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: var(--fw-semibold);
+        }
+
+        .info-card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="public/logo-dark.svg" alt="FitIQ Hub" class="logo-img">
+                    <span class="logo-text">FitIQ Hub</span>
+                </a>
+                <nav class="nav">
+                    <a href="articles/articles.html" class="nav-link">Articles</a>
+                    <a href="tools.html" class="nav-link">Tools</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </nav>
+                <button class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- PAGE HEADER -->
+        <div class="article-page-header">
+            <div class="container">
+                <h1 class="article-page-title">Get In Touch</h1>
+                <p style="color: var(--text-light-gray); margin-top: var(--spacing-lg);">Have questions or feedback? We'd love to hear from you.</p>
+            </div>
+        </div>
+
+        <!-- CONTACT FORM -->
+        <section style="padding: var(--spacing-3xl) 0;">
+            <div class="container">
+                <form class="contact-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject...</option>
+                            <option value="bug">Bug Report</option>
+                            <option value="feature">Feature Request</option>
+                            <option value="feedback">General Feedback</option>
+                            <option value="partnership">Partnership</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us what's on your mind..."></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit">Send Message</button>
+                </form>
+
+                <div style="text-align: center; margin-top: var(--spacing-xl); color: var(--text-light-gray); font-size: var(--fs-sm);">
+                    <p>Or email us directly at: <a href="mailto:travisgolembiewski@gmail.com" style="color: var(--primary-color); text-decoration: none;">contact@fitiqhub.com</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT INFO -->
+        <section style="padding: var(--spacing-3xl) 0;">
+            <div class="container">
+                <h2 class="section-title">Other Ways to Reach Us</h2>
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h3>📧 Email</h3>
+                        <p><a href="mailto:travisgolembiewski@gmail.com">contact@fitiqhub.com</a></p>
+                    </div>
+                    <div class="info-card">
+                        <h3>🐙 GitHub</h3>
+                        <p><a href="https://github.com/travman1993/fitiqhub" target="_blank">Follow our project</a></p>
+                    </div>
+                    <div class="info-card">
+                        <h3>⏱ Response Time</h3>
+                        <p>We aim to respond within 24-48 hours</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-placeholder">
+                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section style="padding: var(--spacing-3xl) 0; background-color: var(--bg-darker);">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div style="background-color: var(--bg-dark); padding: var(--spacing-lg); border-radius: var(--radius-lg); margin-bottom: var(--spacing-lg);">
+                        <h3 style="margin-top: 0; color: var(--primary-color);">Is my data stored or tracked?</h3>
+                        <p style="color: var(--text-light-gray); margin-bottom: 0;">No. All calculator inputs are processed in your browser only. We don't store any personal health data. We only use Google Analytics to understand traffic patterns.</p>
+                    </div>
+
+                    <div style="background-color: var(--bg-dark); padding: var(--spacing-lg); border-radius: var(--radius-lg); margin-bottom: var(--spacing-lg);">
+                        <h3 style="margin-top: 0; color: var(--primary-color);">Are these calculators accurate?</h3>
+                        <p style="color: var(--text-light-gray); margin-bottom: 0;">Our calculators use scientifically-validated formulas (Mifflin-St Jeor, US Navy method). Results are estimates, not medical diagnoses. Always consult a healthcare provider for personalized advice.</p>
+                    </div>
+
+                    <div style="background-color: var(--bg-dark); padding: var(--spacing-lg); border-radius: var(--radius-lg); margin-bottom: var(--spacing-lg);">
+                        <h3 style="margin-top: 0; color: var(--primary-color);">Can I use these tools for medical diagnosis?</h3>
+                        <p style="color: var(--text-light-gray); margin-bottom: 0;">No. Our tools are educational only and not a substitute for professional medical advice. Always consult with a doctor or registered dietitian for health concerns.</p>
+                    </div>
+
+                    <div style="background-color: var(--bg-dark); padding: var(--spacing-lg); border-radius: var(--radius-lg);">
+                        <h3 style="margin-top: 0; color: var(--primary-color);">Are new tools coming?</h3>
+                        <p style="color: var(--text-light-gray); margin-bottom: 0;">Yes! We're planning to add more calculators (water intake, protein, macros, etc.) and expand our article library. Follow our GitHub for updates.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FitIQ Hub</h4>
+                    <p>Health & fitness insights + tools</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="articles/articles.html">Articles</a></li>
+                        <li><a href="tools.html">Tools</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FitIQ Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav').classList.toggle('active');
+        });
+
+        // Form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            // Create mailto link
+            const mailtoLink = `mailto:travisgolembiewski@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Reset form
+            document.querySelector('.contact-form').reset();
+        }
+    </script>
+</body>
+</html>
