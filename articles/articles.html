@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FitIQ Hub Articles - Science-backed guides on fitness, nutrition, body composition, and health metrics.">
+    <meta name="keywords" content="fitness articles, health articles, nutrition guide, body composition, TDEE, BMI">
+    <meta name="author" content="FitIQ Hub">
+    
+    <title>Articles - FitIQ Hub</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../public/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/globals.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/articles.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <img src="../public/logo-dark.svg" alt="FitIQ Hub" class="logo-img">
+                    <span class="logo-text">FitIQ Hub</span>
+                </a>
+                <nav class="nav">
+                    <a href="../index.html#articles" class="nav-link">Articles</a>
+                    <a href="../index.html#tools" class="nav-link">Tools</a>
+                    <a href="../index.html#about" class="nav-link">About</a>
+                </nav>
+                <button class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- PAGE HEADER -->
+        <div class="article-page-header">
+            <div class="container">
+                <h1 class="article-page-title">All Articles</h1>
+                <p style="color: var(--text-light-gray); margin-top: var(--spacing-lg);">Science-backed guides on fitness, nutrition, and body metrics</p>
+            </div>
+        </div>
+
+        <!-- FILTER BY CATEGORY -->
+        <section style="background-color: var(--bg-darker); padding: var(--spacing-xl) 0; border-bottom: 1px solid var(--border-color);">
+            <div class="container">
+                <div style="display: flex; gap: var(--spacing-md); flex-wrap: wrap; justify-content: center;">
+                    <button class="category-filter active" data-category="all" style="padding: var(--spacing-md) var(--spacing-lg); background: rgba(0, 230, 118, 0.2); color: var(--primary-color); border: 1px solid var(--primary-color); border-radius: var(--radius-lg); cursor: pointer; font-weight: var(--fw-semibold); transition: all var(--transition-base);">All</button>
+                    <button class="category-filter" data-category="nutrition" style="padding: var(--spacing-md) var(--spacing-lg); background: transparent; color: var(--text-light-gray); border: 1px solid var(--border-color); border-radius: var(--radius-lg); cursor: pointer; font-weight: var(--fw-semibold); transition: all var(--transition-base);">Nutrition</button>
+                    <button class="category-filter" data-category="body-composition" style="padding: var(--spacing-md) var(--spacing-lg); background: transparent; color: var(--text-light-gray); border: 1px solid var(--border-color); border-radius: var(--radius-lg); cursor: pointer; font-weight: var(--fw-semibold); transition: all var(--transition-base);">Body Composition</button>
+                    <button class="category-filter" data-category="fitness" style="padding: var(--spacing-md) var(--spacing-lg); background: transparent; color: var(--text-light-gray); border: 1px solid var(--border-color); border-radius: var(--radius-lg); cursor: pointer; font-weight: var(--fw-semibold); transition: all var(--transition-base);">Fitness</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ARTICLES GRID -->
+        <section style="padding: var(--spacing-3xl) 0;">
+            <div class="container">
+                <div id="articlesContainer" class="articles-grid">
+                    
+                    <!-- NUTRITION ARTICLES -->
+                    <article class="article-card" data-category="nutrition">
+                        <div class="article-header">
+                            <span class="article-category">Nutrition</span>
+                            <h3 class="article-title">What Your BMI Actually Means (And Why It Matters)</h3>
+                        </div>
+                        <p class="article-excerpt">BMI is one of the most misunderstood metrics in fitness. Learn what it really measures, how to interpret your number, and when it's useful.</p>
+                        <div class="article-meta">
+                            <span class="read-time">5 min read</span>
+                        </div>
+                        <a href="what-is-bmi.html" class="article-link">Read Article →</a>
+                    </article>
+
+                    <!-- BODY COMPOSITION ARTICLES -->
+                    <article class="article-card" data-category="body-composition">
+                        <div class="article-header">
+                            <span class="article-category">Body Composition</span>
+                            <h3 class="article-title">Body Fat % vs BMI: Why One Matters More Than The Other</h3>
+                        </div>
+                        <p class="article-excerpt">Discover why body fat percentage is a better indicator of health than BMI alone, with real-world examples.</p>
+                        <div class="article-meta">
+                            <span class="read-time">6 min read</span>
+                        </div>
+                        <a href="better-measurements.html" class="article-link">Read Article →</a>
+                    </article>
+
+                    <!-- NUTRITION ARTICLES -->
+                    <article class="article-card" data-category="nutrition">
+                        <div class="article-header">
+                            <span class="article-category">Nutrition</span>
+                            <h3 class="article-title">How Many Calories You Actually Burn Daily (TDEE Explained)</h3>
+                        </div>
+                        <p class="article-excerpt">Discover the science behind TDEE and how to use it to reach your fitness goals faster with calorie math.</p>
+                        <div class="article-meta">
+                            <span class="read-time">7 min read</span>
+                        </div>
+                        <a href="healthy-targets.html" class="article-link">Read Article →</a>
+                    </article>
+
+                </div>
+
+                <!-- EMPTY STATE -->
+                <div id="emptyState" style="display: none; text-align: center; padding: var(--spacing-3xl) 0;">
+                    <p style="font-size: var(--fs-xl); color: var(--text-light-gray);">No articles found in this category.</p>
+                    <p style="color: var(--text-medium-gray); margin-top: var(--spacing-lg);">Check back soon for more content!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMING SOON -->
+        <section style="background-color: var(--bg-darker); padding: var(--spacing-3xl) 0; border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <h2 class="section-title">Coming Soon</h2>
+                <p class="section-subtitle">We're constantly adding new articles and guides</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-xl);">
+                    <div style="background-color: var(--bg-dark); padding: var(--spacing-lg); border-radius: var(--radius-lg); border: 1px solid var(--border-color); text-align: center;">
+                        <h4>📱 Protein Intake Calculator</h4>
+                        <p style="color: var(--text-light-gray); font-size: var(--fs-sm); margin-top: var(--spacing-md);">How much protein you need daily</p>
+                    </div>
+                    <div style="background-color: var(--bg-dark); padding: var(--spacing-lg); border-radius: var(--radius-lg); border: 1px solid var(--border-color); text-align: center;">
+                        <h4>💧 Water Intake Calculator</h4>
+                        <p style="color: var(--text-light-gray); font-size: var(--fs-sm); margin-top: var(--spacing-md);">Daily hydration recommendations</p>
+                    </div>
+                    <div style="background-color: var(--bg-dark); padding: var(--spacing-lg); border-radius: var(--radius-lg); border: 1px solid var(--border-color); text-align: center;">
+                        <h4>🎯 Macro Calculator</h4>
+                        <p style="color: var(--text-light-gray); font-size: var(--fs-sm); margin-top: var(--spacing-md);">Carbs, protein, fat ratios</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-placeholder">
+                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FitIQ Hub</h4>
+                    <p>Health & fitness insights + tools</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="../index.html#articles">Articles</a></li>
+                        <li><a href="../index.html#tools">Tools</a></li>
+                        <li><a href="../index.html#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../about.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FitIQ Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav').classList.toggle('active');
+        });
+
+        // Category filter
+        document.querySelectorAll('.category-filter').forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.dataset.category;
+                
+                // Update active button
+                document.querySelectorAll('.category-filter').forEach(b => {
+                    b.style.background = 'transparent';
+                    b.style.color = 'var(--text-light-gray)';
+                    b.style.borderColor = 'var(--border-color)';
+                });
+                this.style.background = 'rgba(0, 230, 118, 0.2)';
+                this.style.color = 'var(--primary-color)';
+                this.style.borderColor = 'var(--primary-color)';
+                
+                // Filter articles
+                const articles = document.querySelectorAll('.article-card');
+                let visibleCount = 0;
+                
+                articles.forEach(article => {
+                    if (category === 'all' || article.dataset.category === category) {
+                        article.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        article.style.display = 'none';
+                    }
+                });
+                
+                // Show empty state if no articles
+                const emptyState = document.getElementById('emptyState');
+                if (visibleCount === 0) {
+                    emptyState.style.display = 'block';
+                } else {
+                    emptyState.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
