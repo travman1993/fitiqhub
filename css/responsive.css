@@ -14,6 +14,40 @@
     section {
         padding: var(--spacing-3xl) 0;
     }
+
+    .tools-grid,
+    .featured-articles-grid,
+    .articles-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hero-title {
+        font-size: var(--fs-5xl);
+    }
+
+    .section-title {
+        font-size: var(--fs-4xl);
+    }
+}
+
+/* ============================================
+   DESKTOPS (992px - 1199px)
+   ============================================ */
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        max-width: 960px;
+    }
+
+    .tools-grid,
+    .featured-articles-grid,
+    .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    section {
+        padding: var(--spacing-2xl) 0;
+    }
 }
 
 /* ============================================

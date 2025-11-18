@@ -322,15 +322,23 @@
     display: inline-block;
     padding: var(--spacing-md) var(--spacing-xl);
     background-color: var(--primary-color);
-    color: var(--bg-dark);
+    color: #000000 !important;
     font-weight: var(--fw-bold);
+    font-size: var(--fs-base);
+    border: none;
     border-radius: var(--radius-lg);
     transition: all var(--transition-base);
+    cursor: pointer;
+    text-decoration: none;
+    font-family: var(--font-heading);
 }
 
 .article-cta-button:hover {
     background-color: var(--primary-dark);
     box-shadow: 0 8px 24px rgba(0, 230, 118, 0.3);
+    transform: translateY(-2px);
+    color: #000000 !important;
+    text-decoration: none;
 }
 
 /* ============================================

@@ -10,6 +10,7 @@
     z-index: var(--z-dropdown);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    will-change: transform;
 }
 
 .header .container {
@@ -164,20 +165,21 @@
         gap: 0;
         background-color: var(--bg-darker);
         border-bottom: 1px solid var(--border-color);
-        padding: var(--spacing-lg) 0;
+        padding: 0;
         max-height: 0;
         overflow: hidden;
         transition: max-height var(--transition-base);
     }
 
     .nav.active {
-        max-height: 300px;
+        max-height: 250px;
     }
 
     .nav-link {
-        padding: var(--spacing-md) var(--spacing-lg);
+        padding: var(--spacing-sm) var(--spacing-lg);
         border-bottom: 1px solid var(--border-color);
         width: 100%;
+        margin: 0;
     }
 
     .nav-link::after {

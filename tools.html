@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FitIQ Hub Tools - Free health calculators including BMI, body fat percentage, and TDEE calculator.">
+    <meta name="keywords" content="health calculator, BMI calculator, body fat calculator, TDEE calculator, fitness tools">
+    <meta name="author" content="FitIQ Hub">
+    
+    <title>Tools - FitIQ Hub</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="public/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/globals.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/tools.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="public/logo-dark.svg" alt="FitIQ Hub" class="logo-img">
+                    <span class="logo-text">FitIQ Hub</span>
+                </a>
+                <nav class="nav">
+                    <a href="articles/index.html" class="nav-link">Articles</a>
+                    <a href="tools.html" class="nav-link">Tools</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </nav>
+                <button class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- PAGE HEADER -->
+        <div class="article-page-header">
+            <div class="container">
+                <h1 class="article-page-title">All Tools</h1>
+                <p style="color: var(--text-light-gray); margin-top: var(--spacing-lg);">Free calculators to help you understand your body and health</p>
+            </div>
+        </div>
+
+        <!-- TOOLS GRID -->
+        <section style="padding: var(--spacing-3xl) 0;">
+            <div class="container">
+                <div class="tools-grid">
+                    
+                    <!-- BMI CALCULATOR -->
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <img src="public/icons/bmi.svg" alt="BMI Calculator">
+                        </div>
+                        <h3 class="tool-title">BMI Calculator</h3>
+                        <p class="tool-description">Calculate your Body Mass Index instantly. Find your weight category and get personalized insights based on your height and weight.</p>
+                        <a href="tools/bmi.html" class="tool-cta">Use Calculator →</a>
+                    </div>
+
+                    <!-- BODY FAT CALCULATOR -->
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <img src="public/icons/bodyfat.svg" alt="Body Fat Calculator">
+                        </div>
+                        <h3 class="tool-title">Body Fat % Estimator</h3>
+                        <p class="tool-description">Estimate your body composition using the US Navy formula. More accurate than BMI for understanding your true fitness level.</p>
+                        <a href="tools/bodyfat.html" class="tool-cta">Use Calculator →</a>
+                    </div>
+
+                    <!-- TDEE CALCULATOR -->
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <img src="public/icons/tdee.svg" alt="TDEE Calculator">
+                        </div>
+                        <h3 class="tool-title">TDEE & BMR Calculator</h3>
+                        <p class="tool-description">Calculate how many calories you burn daily. Essential for meal planning, weight loss, or muscle building goals.</p>
+                        <a href="tools/tdee.html" class="tool-cta">Use Calculator →</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-placeholder">
+                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMING SOON TOOLS -->
+        <section style="background-color: var(--bg-darker); padding: var(--spacing-3xl) 0; border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <h2 class="section-title">Coming Soon</h2>
+                <p class="section-subtitle">More tools to help you reach your fitness goals</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-xl);">
+                    <div style="background-color: var(--bg-dark); padding: var(--spacing-lg); border-radius: var(--radius-lg); border: 1px solid var(--border-color); text-align: center;">
+                        <h4>💧 Water Intake Calculator</h4>
+                        <p style="color: var(--text-light-gray); font-size: var(--fs-sm); margin-top: var(--spacing-md);">How much water you should drink daily</p>
+                    </div>
+                    <div style="background-color: var(--bg-dark); padding: var(--spacing-lg); border-radius: var(--radius-lg); border: 1px solid var(--border-color); text-align: center;">
+                        <h4>🥚 Protein Calculator</h4>
+                        <p style="color: var(--text-light-gray); font-size: var(--fs-sm); margin-top: var(--spacing-md);">Daily protein requirements by goal</p>
+                    </div>
+                    <div style="background-color: var(--bg-dark); padding: var(--spacing-lg); border-radius: var(--radius-lg); border: 1px solid var(--border-color); text-align: center;">
+                        <h4>🎯 Macro Calculator</h4>
+                        <p style="color: var(--text-light-gray); font-size: var(--fs-sm); margin-top: var(--spacing-md);">Carbs, protein, and fat ratios</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-placeholder">
+                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW TO USE SECTION -->
+        <section style="padding: var(--spacing-3xl) 0;">
+            <div class="container">
+                <h2 class="section-title">How to Use These Tools</h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div style="background-color: var(--bg-darker); padding: var(--spacing-xl); border-radius: var(--radius-lg); margin-bottom: var(--spacing-lg);">
+                        <h3 style="margin-top: 0;">1. Choose Your Calculator</h3>
+                        <p style="color: var(--text-light-gray);">Select one of our tools above based on what metric you want to understand.</p>
+                    </div>
+                    <div style="background-color: var(--bg-darker); padding: var(--spacing-xl); border-radius: var(--radius-lg); margin-bottom: var(--spacing-lg);">
+                        <h3 style="margin-top: 0;">2. Enter Your Information</h3>
+                        <p style="color: var(--text-light-gray);">Provide your measurements. Your data is processed in your browser only—we don't store anything.</p>
+                    </div>
+                    <div style="background-color: var(--bg-darker); padding: var(--spacing-xl); border-radius: var(--radius-lg); margin-bottom: var(--spacing-lg);">
+                        <h3 style="margin-top: 0;">3. Get Insights</h3>
+                        <p style="color: var(--text-light-gray);">Receive personalized analysis based on your results. Learn what the numbers mean for your health.</p>
+                    </div>
+                    <div style="background-color: var(--bg-darker); padding: var(--spacing-xl); border-radius: var(--radius-lg);">
+                        <h3 style="margin-top: 0;">4. Explore Related Content</h3>
+                        <p style="color: var(--text-light-gray);">Read related articles to deepen your understanding and take action based on your results.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-placeholder">
+                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FitIQ Hub</h4>
+                    <p>Health & fitness insights + tools</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="articles/articles.html">Articles</a></li>
+                        <li><a href="tools.html">Tools</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="about.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FitIQ Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
