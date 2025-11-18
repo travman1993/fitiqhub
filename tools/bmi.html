@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free BMI Calculator - Find your Body Mass Index instantly. No signups required. See your category and health recommendations.">
+    <meta name="keywords" content="BMI calculator, body mass index, healthy weight, BMI categories">
+    <meta name="author" content="FitIQ Hub">
+    
+    <title>BMI Calculator - FitIQ Hub</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../public/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/globals.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <img src="../public/logo-dark.svg" alt="FitIQ Hub" class="logo-img">
+                    <span class="logo-text">FitIQ Hub</span>
+                </a>
+                <nav class="nav">
+                    <a href="../index.html#articles" class="nav-link">Articles</a>
+                    <a href="../index.html#tools" class="nav-link">Tools</a>
+                    <a href="../index.html#about" class="nav-link">About</a>
+                </nav>
+                <button class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- CALCULATOR SECTION -->
+        <section class="tools-section">
+            <div class="container">
+                <div class="calculator-wrapper">
+                    <h1 class="calculator-title">BMI Calculator</h1>
+                    <p class="calculator-description">Calculate your Body Mass Index (BMI) to understand your weight category relative to your height.</p>
+
+                    <!-- INPUT FORM -->
+                    <form id="bmiForm" onsubmit="return false;">
+                        <!-- Unit Selection -->
+                        <div class="input-group">
+                            <label>Measurement Units</label>
+                            <div style="display: flex; gap: var(--spacing-md);">
+                                <label style="display: flex; align-items: center; gap: var(--spacing-sm); font-weight: var(--fw-regular); margin-bottom: 0;">
+                                    <input type="radio" name="unit" value="metric" checked>
+                                    Metric (kg, cm)
+                                </label>
+                                <label style="display: flex; align-items: center; gap: var(--spacing-sm); font-weight: var(--fw-regular); margin-bottom: 0;">
+                                    <input type="radio" name="unit" value="imperial">
+                                    Imperial (lbs, inches)
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Weight Input -->
+                        <div class="input-group">
+                            <label for="weight">Weight <span id="weightUnit">(kg)</span></label>
+                            <input type="number" id="weight" placeholder="e.g., 75" step="0.1" required>
+                            <span class="input-hint">Enter your weight</span>
+                        </div>
+
+                        <!-- Height Input -->
+                        <div class="input-group">
+                            <label for="height">Height <span id="heightUnit">(cm)</span></label>
+                            <input type="number" id="height" placeholder="e.g., 180" step="0.1" required>
+                            <span class="input-hint">Enter your height</span>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="button-group">
+                            <button type="button" class="calculate-btn" onclick="calculateBMI()">Calculate BMI</button>
+                            <button type="reset" class="reset-btn">Reset</button>
+                        </div>
+                    </form>
+
+                    <!-- RESULTS SECTION -->
+                    <div id="resultsSection" class="results-section">
+                        <h2 class="results-title">Your Results</h2>
+                        
+                        <div class="result-card">
+                            <div class="result-label">Body Mass Index</div>
+                            <div class="result-value" id="bmiValue">--</div>
+                            <div id="bmiCategory" class="bmi-category">--</div>
+                            <div class="result-description" id="bmiDescription">--</div>
+                        </div>
+
+                        <!-- INSIGHTS -->
+                        <div class="insights-section">
+                            <div class="insights-title">What Does This Mean?</div>
+                            <ul class="insights-list" id="insightsList">
+                                <li id="insight1">--</li>
+                                <li id="insight2">--</li>
+                                <li id="insight3">--</li>
+                            </ul>
+                        </div>
+
+                        <!-- BMI CHART -->
+                        <div style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--bg-dark); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+                            <h3 style="font-size: var(--fs-lg); margin-bottom: var(--spacing-md);">BMI Categories (Standard)</h3>
+                            <div style="display: grid; gap: var(--spacing-md);">
+                                <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+                                    <div style="width: 30px; height: 30px; background-color: #2196F3; border-radius: var(--radius-sm);"></div>
+                                    <span>Underweight: BMI < 18.5</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+                                    <div style="width: 30px; height: 30px; background-color: #4CAF50; border-radius: var(--radius-sm);"></div>
+                                    <span>Normal Weight: BMI 18.5 - 24.9</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+                                    <div style="width: 30px; height: 30px; background-color: #FF9800; border-radius: var(--radius-sm);"></div>
+                                    <span>Overweight: BMI 25.0 - 29.9</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+                                    <div style="width: 30px; height: 30px; background-color: #F44336; border-radius: var(--radius-sm);"></div>
+                                    <span>Obese: BMI ≥ 30.0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-placeholder">
+                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELATED TOOLS -->
+        <section class="tools-section">
+            <div class="container">
+                <h2 class="section-title">Related Tools</h2>
+                <div class="related-tools-grid">
+                    <a href="bodyfat.html" class="related-tool-link">
+                        <strong>Body Fat %</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">More accurate body composition</p>
+                    </a>
+                    <a href="tdee.html" class="related-tool-link">
+                        <strong>TDEE Calculator</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Daily calorie burn</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELATED ARTICLES -->
+        <section class="featured-articles-section">
+            <div class="container">
+                <h2 class="section-title">Learn More About BMI</h2>
+                <div class="featured-articles-grid">
+                    <article class="featured-article-card">
+                        <div class="article-header">
+                            <span class="article-category">Nutrition</span>
+                            <h3 class="article-title">What Your BMI Actually Means</h3>
+                        </div>
+                        <p class="article-excerpt">Understand what BMI measures, why it matters, and what the numbers really tell you about your health.</p>
+                        <div class="article-meta">
+                            <span class="read-time">5 min read</span>
+                        </div>
+                        <a href="../articles/what-is-bmi.html" class="article-link">Read Article →</a>
+                    </article>
+
+                    <article class="featured-article-card">
+                        <div class="article-header">
+                            <span class="article-category">Body Composition</span>
+                            <h3 class="article-title">Body Fat % vs BMI: Why One Matters More</h3>
+                        </div>
+                        <p class="article-excerpt">Learn why body composition is more important than BMI alone for understanding your true health status.</p>
+                        <div class="article-meta">
+                            <span class="read-time">6 min read</span>
+                        </div>
+                        <a href="../articles/better-measurements.html" class="article-link">Read Article →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FitIQ Hub</h4>
+                    <p>Health & fitness insights + tools</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="../index.html#articles">Articles</a></li>
+                        <li><a href="../index.html#tools">Tools</a></li>
+                        <li><a href="../index.html#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FitIQ Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script src="../js/bmi.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav').classList.toggle('active');
+        });
+
+        // Unit conversion on radio change
+        document.querySelectorAll('input[name="unit"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'metric') {
+                    document.getElementById('weightUnit').textContent = '(kg)';
+                    document.getElementById('heightUnit').textContent = '(cm)';
+                    document.getElementById('weight').placeholder = 'e.g., 75';
+                    document.getElementById('height').placeholder = 'e.g., 180';
+                } else {
+                    document.getElementById('weightUnit').textContent = '(lbs)';
+                    document.getElementById('heightUnit').textContent = '(inches)';
+                    document.getElementById('weight').placeholder = 'e.g., 165';
+                    document.getElementById('height').placeholder = 'e.g., 70';
+                }
+                document.getElementById('resultsSection').classList.remove('show');
+            });
+        });
+    </script>
+</body>
+</html>

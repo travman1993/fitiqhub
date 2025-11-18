@@ -1,0 +1,213 @@
+/* ============================================
+   FitIQ Hub - Header Styles
+   ============================================ */
+
+   .header {
+    background-color: var(--bg-darker);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: var(--z-dropdown);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.header .container {
+    padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* ============================================
+   LOGO
+   ============================================ */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    cursor: pointer;
+    transition: transform var(--transition-base);
+}
+
+.logo:hover {
+    transform: translateY(-2px);
+}
+
+.logo-img {
+    width: 32px;
+    height: 32px;
+    display: block;
+}
+
+.logo-text {
+    font-family: var(--font-heading);
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-black);
+    color: var(--text-white);
+    letter-spacing: -0.5px;
+}
+
+.logo-text::after {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    margin-left: var(--spacing-xs);
+    vertical-align: middle;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.2);
+    }
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+.nav {
+    display: flex;
+    gap: var(--spacing-xl);
+    align-items: center;
+}
+
+.nav-link {
+    font-family: var(--font-heading);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-base);
+    color: var(--text-light-gray);
+    position: relative;
+    transition: color var(--transition-base);
+    padding: var(--spacing-sm) 0;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+}
+
+/* Underline animation on hover */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width var(--transition-base);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* ============================================
+   MOBILE MENU BUTTON (Hidden by default)
+   ============================================ */
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+}
+
+.menu-toggle span {
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-white);
+    transition: all var(--transition-base);
+    border-radius: var(--radius-sm);
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* ============================================
+   MOBILE RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background-color: var(--bg-darker);
+        border-bottom: 1px solid var(--border-color);
+        padding: var(--spacing-lg) 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--transition-base);
+    }
+
+    .nav.active {
+        max-height: 300px;
+    }
+
+    .nav-link {
+        padding: var(--spacing-md) var(--spacing-lg);
+        border-bottom: 1px solid var(--border-color);
+        width: 100%;
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    .nav-link:hover {
+        background-color: rgba(0, 230, 118, 0.05);
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .header-content {
+        position: relative;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        font-size: var(--fs-lg);
+    }
+
+    .logo-img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .header .container {
+        padding: var(--spacing-md);
+    }
+}

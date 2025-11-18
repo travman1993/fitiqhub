@@ -1,0 +1,382 @@
+/* ============================================
+   FitIQ Hub - Tools Section Styles
+   ============================================ */
+
+   .tools-section {
+    background-color: var(--bg-dark);
+    padding: var(--spacing-3xl) 0;
+}
+
+.section-subtitle {
+    color: var(--text-light-gray);
+    font-size: var(--fs-lg);
+    max-width: 700px;
+    margin: 0 auto var(--spacing-xl);
+}
+
+/* ============================================
+   CALCULATOR CONTAINER
+   ============================================ */
+
+.calculator-wrapper {
+    background-color: var(--bg-darker);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-2xl);
+    max-width: 600px;
+    margin: var(--spacing-2xl) auto;
+    box-shadow: var(--shadow-md);
+}
+
+.calculator-title {
+    font-size: var(--fs-3xl);
+    font-weight: var(--fw-black);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+.calculator-description {
+    text-align: center;
+    color: var(--text-light-gray);
+    font-size: var(--fs-base);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.8;
+}
+
+/* ============================================
+   INPUT GROUPS
+   ============================================ */
+
+.input-group {
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-semibold);
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group input,
+.input-group select {
+    padding: var(--spacing-md);
+    font-size: var(--fs-base);
+    background-color: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-white);
+    transition: all var(--transition-base);
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 12px rgba(0, 230, 118, 0.2);
+}
+
+.input-hint {
+    font-size: var(--fs-xs);
+    color: var(--text-medium-gray);
+    margin-top: var(--spacing-xs);
+}
+
+/* ============================================
+   BUTTON GROUPS
+   ============================================ */
+
+.button-group {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.calculate-btn {
+    flex: 1;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    background-color: var(--primary-color);
+    color: var(--bg-dark);
+    font-family: var(--font-heading);
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-bold);
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.calculate-btn:hover {
+    background-color: var(--primary-dark);
+    box-shadow: 0 8px 24px rgba(0, 230, 118, 0.3);
+    transform: translateY(-2px);
+}
+
+.calculate-btn:active {
+    transform: translateY(0);
+}
+
+.reset-btn {
+    padding: var(--spacing-lg) var(--spacing-xl);
+    background-color: transparent;
+    color: var(--primary-color);
+    font-weight: var(--fw-semibold);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.reset-btn:hover {
+    background-color: rgba(0, 230, 118, 0.1);
+}
+
+/* ============================================
+   RESULTS SECTION
+   ============================================ */
+
+.results-section {
+    display: none;
+    margin-top: var(--spacing-2xl);
+    padding: var(--spacing-xl);
+    background: linear-gradient(135deg, rgba(0, 230, 118, 0.1), rgba(0, 184, 169, 0.05));
+    border: 1px solid var(--primary-color);
+    border-radius: var(--radius-lg);
+    animation: slideIn 0.4s ease;
+}
+
+.results-section.show {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.results-title {
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-bold);
+    margin-bottom: var(--spacing-lg);
+    color: var(--primary-color);
+}
+
+/* ============================================
+   RESULT CARDS
+   ============================================ */
+
+.result-card {
+    background-color: var(--bg-darker);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+.result-label {
+    font-size: var(--fs-sm);
+    color: var(--text-medium-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.result-value {
+    font-size: var(--fs-4xl);
+    font-weight: var(--fw-black);
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.result-description {
+    font-size: var(--fs-sm);
+    color: var(--text-light-gray);
+    line-height: 1.6;
+}
+
+/* ============================================
+   INSIGHTS & RECOMMENDATIONS
+   ============================================ */
+
+.insights-section {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background-color: var(--bg-dark);
+    border-left: 4px solid var(--primary-color);
+    border-radius: var(--radius-md);
+}
+
+.insights-title {
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-bold);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.insights-title::before {
+    content: '💡';
+    font-size: var(--fs-2xl);
+}
+
+.insights-list {
+    list-style: none;
+    padding: 0;
+}
+
+.insights-list li {
+    padding: var(--spacing-sm) 0;
+    color: var(--text-light-gray);
+    font-size: var(--fs-sm);
+    line-height: 1.6;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.insights-list li:last-child {
+    border-bottom: none;
+}
+
+.insights-list li::before {
+    content: '✓ ';
+    color: var(--primary-color);
+    font-weight: var(--fw-bold);
+    margin-right: var(--spacing-sm);
+}
+
+/* ============================================
+   TOOL-SPECIFIC STYLES
+   ============================================ */
+
+.bmi-category {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--bg-darker);
+    border-radius: var(--radius-md);
+    font-weight: var(--fw-bold);
+    margin-top: var(--spacing-md);
+}
+
+.bmi-category.underweight {
+    color: #2196F3;
+    border: 1px solid #2196F3;
+}
+
+.bmi-category.normal {
+    color: #4CAF50;
+    border: 1px solid #4CAF50;
+}
+
+.bmi-category.overweight {
+    color: #FF9800;
+    border: 1px solid #FF9800;
+}
+
+.bmi-category.obese {
+    color: #F44336;
+    border: 1px solid #F44336;
+}
+
+/* ============================================
+   RELATED TOOLS
+   ============================================ */
+
+.related-tools {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-2xl);
+    border-top: 1px solid var(--border-color);
+}
+
+.related-tools-title {
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-bold);
+    margin-bottom: var(--spacing-lg);
+}
+
+.related-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.related-tool-link {
+    background-color: var(--bg-darker);
+    border: 1px solid var(--border-color);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: all var(--transition-base);
+    text-decoration: none;
+    color: var(--text-white);
+}
+
+.related-tool-link:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+}
+
+.related-tool-link strong {
+    color: var(--primary-color);
+}
+
+/* ============================================
+   AD BANNER SECTION
+   ============================================ */
+
+.ad-section {
+    background-color: var(--bg-darker);
+    padding: var(--spacing-2xl) 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ad-placeholder {
+    background-color: var(--bg-dark);
+    border: 2px dashed var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl);
+    text-align: center;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .calculator-wrapper {
+        padding: var(--spacing-xl);
+    }
+
+    .calculator-title {
+        font-size: var(--fs-2xl);
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .result-value {
+        font-size: var(--fs-3xl);
+    }
+
+    .related-tools-grid {
+        grid-template-columns: 1fr;
+    }
+}
