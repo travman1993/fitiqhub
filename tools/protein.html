@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Protein Calculator - Calculate your daily protein intake based on your weight and fitness goals. No signups required.">
+    <meta name="keywords" content="protein calculator, daily protein intake, protein requirements, muscle building, weight loss">
+    <meta name="author" content="FitIQ Hub">
+    
+    <title>Protein Calculator - FitIQ Hub</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../public/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DCS2X2HWTJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-DCS2X2HWTJ');
+    </script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/globals.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <img src="../public/logo-dark.png" alt="FitIQ Hub" class="logo-img">
+                    <span class="logo-text">FitIQ Hub</span>
+                </a>
+                <nav class="nav">
+                    <a href="../articles/articles.html" class="nav-link">Articles</a>
+                    <a href="../tools.html" class="nav-link">Tools</a>
+                    <a href="../about.html" class="nav-link">About</a>
+                </nav>
+                <button class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="ad-section">
+        <div class="container">
+            <div class="ad-placeholder">
+                <!-- Google AdSense will go here -->
+                <p style="color: #999; font-size: 14px;">Advertisement</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- CALCULATOR SECTION -->
+        <section class="tools-section">
+            <div class="container">
+                <div class="calculator-wrapper">
+                    <h1 class="calculator-title">Protein Calculator</h1>
+                    <p class="calculator-description">Calculate your daily protein requirements based on your body weight and fitness goals. Protein is essential for muscle building, recovery, and weight management.</p>
+
+                    <!-- INPUT FORM -->
+                    <form id="proteinForm" onsubmit="return false;">
+                        <!-- Unit Selection -->
+                        <div class="input-group">
+                            <label>Measurement Units</label>
+                            <div style="display: flex; gap: var(--spacing-md);">
+                                <label style="display: flex; align-items: center; gap: var(--spacing-sm); font-weight: var(--fw-regular); margin-bottom: 0;">
+                                    <input type="radio" name="unit" value="metric" checked>
+                                    Metric (kg)
+                                </label>
+                                <label style="display: flex; align-items: center; gap: var(--spacing-sm); font-weight: var(--fw-regular); margin-bottom: 0;">
+                                    <input type="radio" name="unit" value="imperial">
+                                    Imperial (lbs)
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Body Weight Input -->
+                        <div class="input-group">
+                            <label for="weight">Body Weight <span id="weightUnit">(kg)</span></label>
+                            <input type="number" id="weight" placeholder="e.g., 75" step="0.1" required>
+                            <span class="input-hint">Enter your current body weight</span>
+                        </div>
+
+                        <!-- Fitness Goal Selection -->
+                        <div class="input-group">
+                            <label for="goal">Fitness Goal</label>
+                            <select id="goal" required>
+                                <option value="">Select your primary goal...</option>
+                                <option value="weight-loss">Weight Loss (0.8g per lb)</option>
+                                <option value="maintenance">Maintenance (1.0g per lb)</option>
+                                <option value="muscle-gain">Muscle Gain (1.2g per lb)</option>
+                                <option value="athletic">Athletic/Performance (1.4g per lb)</option>
+                            </select>
+                            <span class="input-hint">Choose based on your current fitness goal</span>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="button-group">
+                            <button type="button" class="calculate-btn" onclick="calculateProtein()">Calculate Protein Intake</button>
+                            <button type="reset" class="reset-btn">Reset</button>
+                        </div>
+                    </form>
+
+                    <!-- RESULTS SECTION -->
+                    <div id="resultsSection" class="results-section">
+                        <h2 class="results-title">Your Results</h2>
+                        
+                        <div class="result-card">
+                            <div class="result-label">Daily Protein Requirement</div>
+                            <div class="result-value" id="proteinValue">--</div>
+                            <div class="result-description" id="proteinDescription">Grams of protein you should consume daily</div>
+                        </div>
+
+                        <!-- PROTEIN SOURCES & TIPS -->
+                        <div class="insights-section">
+                            <div class="insights-title">How to Meet Your Protein Goal</div>
+                            <ul class="insights-list">
+                                <li>Eat protein with every meal (breakfast, lunch, dinner)</li>
+                                <li>Combine animal and plant-based protein sources</li>
+                                <li>Spread protein intake throughout the day for optimal muscle synthesis</li>
+                            </ul>
+                        </div>
+
+                        <section class="ad-section">
+                            <div class="container">
+                                <div class="ad-placeholder">
+                                    <!-- Google AdSense will go here -->
+                                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- PROTEIN SOURCES CHART -->
+                        <div style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--bg-dark); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+                            <h3 style="font-size: var(--fs-lg); margin-bottom: var(--spacing-md);">Protein Sources (per serving)</h3>
+                            <div style="display: grid; gap: var(--spacing-md);">
+                                <div style="background-color: var(--bg-darker); padding: var(--spacing-md); border-radius: var(--radius-md); border-left: 4px solid #FF6B6B;">
+                                    <strong style="color: #FF6B6B;">Animal Protein</strong>
+                                    <p style="color: var(--text-light-gray); font-size: var(--fs-sm); margin-top: var(--spacing-sm); margin-bottom: 0;">Chicken breast (31g), Salmon (25g), Eggs (6g each), Greek Yogurt (10-20g), Cottage Cheese (14g)</p>
+                                </div>
+                                <div style="background-color: var(--bg-darker); padding: var(--spacing-md); border-radius: var(--radius-md); border-left: 4px solid #4CAF50;">
+                                    <strong style="color: #4CAF50;">Plant-Based Protein</strong>
+                                    <p style="color: var(--text-light-gray); font-size: var(--fs-sm); margin-top: var(--spacing-sm); margin-bottom: 0;">Lentils (18g), Chickpeas (19g), Tofu (8-15g), Tempeh (19g), Nuts & Seeds (5-9g)</p>
+                                </div>
+                                <div style="background-color: var(--bg-darker); padding: var(--spacing-md); border-radius: var(--radius-md); border-left: 4px solid #2196F3;">
+                                    <strong style="color: #2196F3;">Convenient Options</strong>
+                                    <p style="color: var(--text-light-gray); font-size: var(--fs-sm); margin-top: var(--spacing-sm); margin-bottom: 0;">Protein Powder (20-30g), Protein Bars (10-20g), Greek Yogurt (10-20g), Cottage Cheese (14g)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER #1 (SPOT 1) -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-placeholder">
+                    <!-- Google AdSense will go here -->
+                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELATED TOOLS -->
+        <section class="tools-section">
+            <div class="container">
+                <h2 class="section-title">Related Tools</h2>
+                <div class="related-tools-grid">
+                    <a href="bmi.html" class="related-tool-link">
+                        <strong>BMI Calculator</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Quick weight category check</p>
+                    </a>
+                    <a href="tdee.html" class="related-tool-link">
+                        <strong>TDEE Calculator</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Daily calorie burn</p>
+                    </a>
+                    <a href="bodyfat.html" class="related-tool-link">
+                        <strong>Body Fat %</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Body composition estimator</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER #2 (SPOT 2) -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-placeholder">
+                    <!-- Google AdSense will go here -->
+                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELATED ARTICLES -->
+        <section class="featured-articles-section">
+            <div class="container">
+                <h2 class="section-title">Learn More About Protein</h2>
+                <div class="featured-articles-grid">
+                    <article class="featured-article-card">
+                        <div class="article-header">
+                            <span class="article-category">Nutrition</span>
+                            <h3 class="article-title">How Much Protein Should You Eat?</h3>
+                        </div>
+                        <p class="article-excerpt">Complete breakdown of protein requirements, how much you actually need, and why it matters for your goals.</p>
+                        <div class="article-meta">
+                            <span class="read-time">6 min read</span>
+                        </div>
+                        <a href="../articles/protein-intake.html" class="article-link">Read Article →</a>
+                    </article>
+
+                    <article class="featured-article-card">
+                        <div class="article-header">
+                            <span class="article-category">Nutrition</span>
+                            <h3 class="article-title">Best Protein Sources Ranked</h3>
+                        </div>
+                        <p class="article-excerpt">Compare animal vs plant-based proteins, cost per gram, and which sources fit your diet best.</p>
+                        <div class="article-meta">
+                            <span class="read-time">5 min read</span>
+                        </div>
+                        <a href="../articles/protein-sources.html" class="article-link">Read Article →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER #3 (SPOT 3) -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-placeholder">
+                    <!-- Google AdSense will go here -->
+                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FitIQ Hub</h4>
+                    <p>Health & fitness insights + tools</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="../articles/articles.html">Articles</a></li>
+                        <li><a href="../tools.html">Tools</a></li>
+                        <li><a href="../about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FitIQ Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script src="../js/protein.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav').classList.toggle('active');
+        });
+
+        // Unit conversion on radio change
+        document.querySelectorAll('input[name="unit"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'metric') {
+                    document.getElementById('weightUnit').textContent = '(kg)';
+                    document.getElementById('weight').placeholder = 'e.g., 75';
+                } else {
+                    document.getElementById('weightUnit').textContent = '(lbs)';
+                    document.getElementById('weight').placeholder = 'e.g., 165';
+                }
+                document.getElementById('resultsSection').classList.remove('show');
+            });
+        });
+    </script>  
+</body>
+</html>
