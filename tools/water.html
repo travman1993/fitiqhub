@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Water Intake Calculator - Calculate your daily water needs based on activity level and climate. Stay properly hydrated for optimal health.">
+    <meta name="keywords" content="water intake calculator, daily water needs, hydration calculator, water requirements">
+    <meta name="author" content="FitIQ Hub">
+    
+    <title>Water Intake Calculator - FitIQ Hub</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../public/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DCS2X2HWTJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-DCS2X2HWTJ');
+    </script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/globals.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <img src="../public/logo-dark.png" alt="FitIQ Hub" class="logo-img">
+                    <span class="logo-text">FitIQ Hub</span>
+                </a>
+                <nav class="nav">
+                    <a href="../articles/articles.html" class="nav-link">Articles</a>
+                    <a href="../tools.html" class="nav-link">Tools</a>
+                    <a href="../about.html" class="nav-link">About</a>
+                </nav>
+                <button class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- CALCULATOR SECTION -->
+        <section class="tools-section">
+            <div class="container">
+                <div class="calculator-wrapper">
+                    <h1 class="calculator-title">Water Intake Calculator</h1>
+                    <p class="calculator-description">Calculate your personalized daily water intake based on your body weight, activity level, and climate. Proper hydration is essential for health, weight loss, and athletic performance.</p>
+
+                    <!-- INPUT FORM -->
+                    <form id="waterForm" onsubmit="return false;">
+                        <!-- Unit Selection -->
+                        <div class="input-group">
+                            <label>Measurement Units</label>
+                            <div style="display: flex; gap: var(--spacing-md);">
+                                <label style="display: flex; align-items: center; gap: var(--spacing-sm); font-weight: var(--fw-regular); margin-bottom: 0;">
+                                    <input type="radio" name="unit" value="metric" checked>
+                                    Metric (kg)
+                                </label>
+                                <label style="display: flex; align-items: center; gap: var(--spacing-sm); font-weight: var(--fw-regular); margin-bottom: 0;">
+                                    <input type="radio" name="unit" value="imperial">
+                                    Imperial (lbs)
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Body Weight Input -->
+                        <div class="input-group">
+                            <label for="weight">Body Weight <span id="weightUnit">(kg)</span></label>
+                            <input type="number" id="weight" placeholder="e.g., 75" step="0.1" required>
+                            <span class="input-hint">Enter your current body weight</span>
+                        </div>
+
+                        <!-- Activity Level Selection -->
+                        <div class="input-group">
+                            <label for="activity">Activity Level</label>
+                            <select id="activity" required>
+                                <option value="">Select your activity level...</option>
+                                <option value="sedentary">Sedentary (little to no exercise)</option>
+                                <option value="lightly-active">Lightly Active (light exercise 1-3 days/week)</option>
+                                <option value="moderately-active">Moderately Active (moderate exercise 3-5 days/week)</option>
+                                <option value="very-active">Very Active (intense exercise 6-7 days/week)</option>
+                                <option value="athlete">Athlete (intense daily training)</option>
+                            </select>
+                            <span class="input-hint">Choose based on your typical weekly exercise</span>
+                        </div>
+
+                        <!-- Climate Selection -->
+                        <div class="input-group">
+                            <label for="climate">Climate</label>
+                            <select id="climate" required>
+                                <option value="">Select your climate...</option>
+                                <option value="cold">Cold/Temperate Climate</option>
+                                <option value="warm">Warm Climate</option>
+                                <option value="hot">Hot/Humid Climate</option>
+                                <option value="very-hot">Very Hot Climate</option>
+                            </select>
+                            <span class="input-hint">Your typical environmental conditions</span>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="button-group">
+                            <button type="button" class="calculate-btn" onclick="calculateWater()">Calculate Daily Water Intake</button>
+                            <button type="reset" class="reset-btn">Reset</button>
+                        </div>
+                    </form>
+
+                    <!-- RESULTS SECTION -->
+                    <div id="resultsSection" class="results-section">
+                        <h2 class="results-title">Your Results</h2>
+                        
+                        <div class="result-card">
+                            <div class="result-label">Daily Water Intake Recommendation</div>
+                            <div class="result-value" id="waterValue">--</div>
+                            <div class="result-description" id="waterDescription">Daily water you should drink</div>
+                        </div>
+
+                        <!-- HYDRATION TIPS -->
+                        <div class="insights-section">
+                            <div class="insights-title">Hydration Tips</div>
+                            <ul class="insights-list">
+                                <li id="tip1">--</li>
+                                <li id="tip2">--</li>
+                                <li id="tip3">--</li>
+                            </ul>
+                        </div>
+
+                        <!-- WATER SOURCES CHART -->
+                        <div style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--bg-dark); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+                            <h3 style="font-size: var(--fs-lg); margin-bottom: var(--spacing-md);">Daily Water Breakdown</h3>
+                            <div style="display: grid; gap: var(--spacing-md);">
+                                <div style="background-color: var(--bg-darker); padding: var(--spacing-md); border-radius: var(--radius-md); border-left: 4px solid #2196F3;">
+                                    <strong style="color: #2196F3;">Base Water Intake</strong>
+                                    <p style="color: var(--text-light-gray); font-size: var(--fs-sm); margin-top: var(--spacing-sm); margin-bottom: 0;">~30-35 mL per kg (or 0.5 oz per lb) - foundation of hydration</p>
+                                </div>
+                                <div style="background-color: var(--bg-darker); padding: var(--spacing-md); border-radius: var(--radius-md); border-left: 4px solid #4CAF50;">
+                                    <strong style="color: #4CAF50;">Activity Bonus</strong>
+                                    <p style="color: var(--text-light-gray); font-size: var(--fs-sm); margin-top: var(--spacing-sm); margin-bottom: 0;">+500mL per hour of exercise, +250mL for light activity</p>
+                                </div>
+                                <div style="background-color: var(--bg-darker); padding: var(--spacing-md); border-radius: var(--radius-md); border-left: 4px solid #FF9800;">
+                                    <strong style="color: #FF9800;">Climate Adjustment</strong>
+                                    <p style="color: var(--text-light-gray); font-size: var(--fs-sm); margin-top: var(--spacing-sm); margin-bottom: 0;">Hot/humid climates add 10-30% more water needs due to perspiration</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- HYDRATION SCHEDULE -->
+                        <div style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--bg-dark); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+                            <h3 style="font-size: var(--fs-lg); margin-bottom: var(--spacing-md);">Sample Hydration Schedule</h3>
+                            <div style="display: grid; gap: var(--spacing-sm); font-size: var(--fs-sm);">
+                                <div style="display: flex; justify-content: space-between; padding: var(--spacing-sm); background-color: var(--bg-darker); border-radius: var(--radius-sm);">
+                                    <span><strong>Morning (6-9 AM)</strong></span>
+                                    <span style="color: var(--primary-color);">~500 mL water</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: var(--spacing-sm); background-color: var(--bg-darker); border-radius: var(--radius-sm);">
+                                    <span><strong>Before Lunch (11-12 PM)</strong></span>
+                                    <span style="color: var(--primary-color);">~500 mL water</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: var(--spacing-sm); background-color: var(--bg-darker); border-radius: var(--radius-sm);">
+                                    <span><strong>Afternoon (2-5 PM)</strong></span>
+                                    <span style="color: var(--primary-color);">~500 mL water</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: var(--spacing-sm); background-color: var(--bg-darker); border-radius: var(--radius-sm);">
+                                    <span><strong>Evening (6-9 PM)</strong></span>
+                                    <span style="color: var(--primary-color);">~500 mL water</span>
+                                </div>
+                                <p style="color: var(--text-light-gray); font-size: var(--fs-xs); margin-top: var(--spacing-md); margin-bottom: 0;">💡 Spread water intake throughout the day rather than drinking large amounts at once for optimal absorption</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER #1 (SPOT 1) -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-placeholder">
+                    <!-- Google AdSense will go here -->
+                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELATED TOOLS -->
+        <section class="tools-section">
+            <div class="container">
+                <h2 class="section-title">Related Tools</h2>
+                <div class="related-tools-grid">
+                    <a href="bmi.html" class="related-tool-link">
+                        <strong>BMI Calculator</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Quick weight category check</p>
+                    </a>
+                    <a href="protein.html" class="related-tool-link">
+                        <strong>Protein Calculator</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Daily protein requirements</p>
+                    </a>
+                    <a href="tdee.html" class="related-tool-link">
+                        <strong>TDEE Calculator</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Daily calorie burn</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER #2 (SPOT 2) -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-placeholder">
+                    <!-- Google AdSense will go here -->
+                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELATED ARTICLES -->
+        <section class="featured-articles-section">
+            <div class="container">
+                <h2 class="section-title">Learn More About Hydration</h2>
+                <div class="featured-articles-grid">
+                    <article class="featured-article-card">
+                        <div class="article-header">
+                            <span class="article-category">Nutrition</span>
+                            <h3 class="article-title">Hydration for Weight Loss: How Much Water You Need</h3>
+                        </div>
+                        <p class="article-excerpt">Learn how proper hydration boosts metabolism, reduces appetite, and supports weight loss goals.</p>
+                        <div class="article-meta">
+                            <span class="read-time">5 min read</span>
+                        </div>
+                        <a href="../articles/water-intake.html" class="article-link">Read Article →</a>
+                    </article>
+
+                    <article class="featured-article-card">
+                        <div class="article-header">
+                            <span class="article-category">Performance</span>
+                            <h3 class="article-title">How Much Protein Should You Eat?</h3>
+                        </div>
+                        <p class="article-excerpt">Combine proper hydration with adequate protein intake for optimal health and fitness results.</p>
+                        <div class="article-meta">
+                            <span class="read-time">6 min read</span>
+                        </div>
+                        <a href="../articles/protein-intake.html" class="article-link">Read Article →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER #3 (SPOT 3) -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-placeholder">
+                    <!-- Google AdSense will go here -->
+                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FitIQ Hub</h4>
+                    <p>Health & fitness insights + tools</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="../articles/articles.html">Articles</a></li>
+                        <li><a href="../tools.html">Tools</a></li>
+                        <li><a href="../about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="../cookie-policy.html"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FitIQ Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script src="../js/water.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
