@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Heart Rate Calculator - Calculate your max heart rate, training zones, and optimal cardio intensity. Includes Karvonen formula for personalized results.">
+    <meta name="keywords" content="heart rate calculator, max heart rate, training zones, cardio intensity, aerobic threshold">
+    <meta name="author" content="FitIQ Hub">
+    
+    <title>Heart Rate & Training Zone Calculator - FitIQ Hub</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../public/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DCS2X2HWTJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-DCS2X2HWTJ');
+    </script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/globals.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    
+    <style>
+        .zone-card {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.05), rgba(0, 184, 169, 0.02));
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .zone-color {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: var(--spacing-sm);
+            vertical-align: middle;
+        }
+
+        .zone-name {
+            font-weight: var(--fw-bold);
+            font-size: var(--fs-lg);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .zone-range {
+            font-size: var(--fs-base);
+            color: var(--text-light-gray);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .zone-description {
+            font-size: var(--fs-sm);
+            color: var(--text-medium-gray);
+            line-height: 1.6;
+        }
+
+        .zone-benefits {
+            margin-top: var(--spacing-md);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .zone-benefits h4 {
+            font-size: var(--fs-sm);
+            font-weight: var(--fw-bold);
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .zone-benefits ul {
+            margin: 0;
+            padding-left: var(--spacing-lg);
+            font-size: var(--fs-xs);
+        }
+
+        .zone-benefits li {
+            margin-bottom: var(--spacing-xs);
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <img src="../public/logo-dark.png" alt="FitIQ Hub" class="logo-img">
+                    <span class="logo-text">FitIQ Hub</span>
+                </a>
+                <nav class="nav">
+                    <a href="../articles/articles.html" class="nav-link">Articles</a>
+                    <a href="../tools.html" class="nav-link">Tools</a>
+                    <a href="../about.html" class="nav-link">About</a>
+                </nav>
+                <button class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- CALCULATOR SECTION -->
+        <section class="tools-section">
+            <div class="container">
+                <div class="calculator-wrapper">
+                    <h1 class="calculator-title">❤️ Heart Rate & Training Zone Calculator</h1>
+                    <p class="calculator-description">Calculate your maximum heart rate and personalized training zones to optimize your cardio workouts. Uses both age-based and Karvonen formulas.</p>
+
+                    <!-- INPUT FORM -->
+                    <form id="heartrateForm" onsubmit="return false;">
+                        <!-- Age Input -->
+                        <div class="input-group">
+                            <label for="age">Age (years)</label>
+                            <input type="number" id="age" placeholder="e.g., 30" min="1" max="120" required>
+                            <span class="input-hint">Your current age</span>
+                        </div>
+
+                        <!-- Resting Heart Rate Input (Optional but improves accuracy) -->
+                        <div class="input-group">
+                            <label for="restingHR">Resting Heart Rate (bpm) <span style="color: var(--text-medium-gray);">Optional</span></label>
+                            <input type="number" id="restingHR" placeholder="e.g., 60" min="30" max="100" step="1">
+                            <span class="input-hint">Measure in morning before getting up. Improves accuracy. (Default: 60 bpm)</span>
+                        </div>
+
+                        <!-- Formula Selection -->
+                        <div class="input-group">
+                            <label>Maximum Heart Rate Formula</label>
+                            <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+                                <label style="display: flex; align-items: flex-start; gap: var(--spacing-sm); font-weight: var(--fw-regular); margin-bottom: 0; cursor: pointer;">
+                                    <input type="radio" name="formula" value="tanaka" checked>
+                                    <span>
+                                        <strong>Tanaka Formula (2001)</strong> - Most Accurate
+                                        <br><span style="font-size: var(--fs-xs); color: var(--text-medium-gray);">Max HR = 208 − (0.7 × age)</span>
+                                    </span>
+                                </label>
+                                <label style="display: flex; align-items: flex-start; gap: var(--spacing-sm); font-weight: var(--fw-regular); margin-bottom: 0; cursor: pointer;">
+                                    <input type="radio" name="formula" value="fox">
+                                    <span>
+                                        <strong>Fox Formula (1970)</strong> - Traditional
+                                        <br><span style="font-size: var(--fs-xs); color: var(--text-medium-gray);">Max HR = 220 − age</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Fitness Level (For Karvonen) -->
+                        <div class="input-group">
+                            <label>Fitness Level (for Karvonen calculation)</label>
+                            <select id="fitnessLevel">
+                                <option value="sedentary">Sedentary (minimal exercise)</option>
+                                <option value="light" selected>Lightly Active (1-3 days/week)</option>
+                                <option value="moderate">Moderately Active (3-5 days/week)</option>
+                                <option value="very">Very Active (6-7 days/week)</option>
+                                <option value="athlete">Athlete (intense training)</option>
+                            </select>
+                            <span class="input-hint">Used to adjust training zones based on fitness</span>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="button-group">
+                            <button type="button" class="calculate-btn" onclick="calculateHeartRate()">Calculate Heart Rate Zones</button>
+                            <button type="reset" class="reset-btn">Reset</button>
+                        </div>
+                    </form>
+
+                    <!-- RESULTS SECTION -->
+                    <div id="resultsSection" class="results-section">
+                        <h2 class="results-title">Your Heart Rate Zones</h2>
+                        
+                        <!-- Max HR Card -->
+                        <div class="result-card">
+                            <div class="result-label">Maximum Heart Rate</div>
+                            <div class="result-value" id="maxHRValue">--</div>
+                            <div class="result-description" id="maxHRDescription">Your estimated maximum heart rate (bpm)</div>
+                        </div>
+
+                        <!-- Training Zones Section -->
+                        <div style="margin-top: var(--spacing-2xl);">
+                            <h3 style="font-size: var(--fs-lg); margin-bottom: var(--spacing-lg);">🎯 Your Training Zones (% of Max HR)</h3>
+
+                            <!-- Zone 1: Recovery -->
+                            <div class="zone-card">
+                                <div class="zone-name">
+                                    <span class="zone-color" style="background-color: #A8D8FF;"></span>
+                                    Zone 1: Recovery
+                                </div>
+                                <div class="zone-range"><span id="zone1Min">--</span> - <span id="zone1Max">--</span> bpm (50-60% Max HR)</div>
+                                <div class="zone-description">Light activity, easy breathing, can hold a conversation. Perfect for warm-ups, cool-downs, and active recovery.</div>
+                                <div class="zone-benefits">
+                                    <h4>✓ Benefits</h4>
+                                    <ul>
+                                        <li>Improves blood flow without stress</li>
+                                        <li>Promotes recovery between hard workouts</li>
+                                        <li>Ideal for beginners and older adults</li>
+                                        <li>Builds aerobic base safely</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Zone 2: Aerobic -->
+                            <div class="zone-card">
+                                <div class="zone-name">
+                                    <span class="zone-color" style="background-color: #87CEEB;"></span>
+                                    Zone 2: Aerobic
+                                </div>
+                                <div class="zone-range"><span id="zone2Min">--</span> - <span id="zone2Max">--</span> bpm (60-70% Max HR)</div>
+                                <div class="zone-description">Light to moderate effort, slightly elevated breathing, can still talk but not sing. The "sweet spot" for building fitness.</div>
+                                <div class="zone-benefits">
+                                    <h4>✓ Benefits</h4>
+                                    <ul>
+                                        <li>Improves cardiovascular fitness</li>
+                                        <li>Burns fat as primary fuel source</li>
+                                        <li>Sustainable for long distances</li>
+                                        <li>Enhances aerobic capacity over time</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Zone 3: Tempo -->
+                            <div class="zone-card">
+                                <div class="zone-name">
+                                    <span class="zone-color" style="background-color: #FFD700;"></span>
+                                    Zone 3: Tempo / Lactate Threshold
+                                </div>
+                                <div class="zone-range"><span id="zone3Min">--</span> - <span id="zone3Max">--</span> bpm (70-80% Max HR)</div>
+                                <div class="zone-description">Moderate to hard effort, heavy breathing, talking becomes difficult. Builds speed and endurance.</div>
+                                <div class="zone-benefits">
+                                    <h4>✓ Benefits</h4>
+                                    <ul>
+                                        <li>Increases lactate threshold</li>
+                                        <li>Improves pace and speed</li>
+                                        <li>Increases calorie burn</li>
+                                        <li>Bridges gap between easy and hard work</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Zone 4: VO2 Max -->
+                            <div class="zone-card">
+                                <div class="zone-name">
+                                    <span class="zone-color" style="background-color: #FF8C42;"></span>
+                                    Zone 4: VO₂ Max
+                                </div>
+                                <div class="zone-range"><span id="zone4Min">--</span> - <span id="zone4Max">--</span> bpm (80-90% Max HR)</div>
+                                <div class="zone-description">Hard effort, very heavy breathing, speech is broken up. Improves maximum oxygen utilization.</div>
+                                <div class="zone-benefits">
+                                    <h4>✓ Benefits</h4>
+                                    <ul>
+                                        <li>Increases VO₂ max (oxygen capacity)</li>
+                                        <li>Improves aerobic power</li>
+                                        <li>Increases heart stroke volume</li>
+                                        <li>Allows faster recovery between intervals</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Zone 5: Anaerobic -->
+                            <div class="zone-card">
+                                <div class="zone-name">
+                                    <span class="zone-color" style="background-color: #FF4444;"></span>
+                                    Zone 5: Anaerobic / All-Out
+                                </div>
+                                <div class="zone-range"><span id="zone5Min">--</span> - <span id="zone5Max">--</span> bpm (90-100% Max HR)</div>
+                                <div class="zone-description">Maximum effort, can't hold conversation, only sustainable for short bursts. Maximum intensity sprinting.</div>
+                                <div class="zone-benefits">
+                                    <h4>✓ Benefits</h4>
+                                    <ul>
+                                        <li>Builds anaerobic capacity</li>
+                                        <li>Increases speed and power</li>
+                                        <li>Maximum calorie burn</li>
+                                        <li>Improves competitive performance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Training Recommendations -->
+                        <div style="margin-top: var(--spacing-2xl); padding: var(--spacing-lg); background-color: var(--bg-dark); border-radius: var(--radius-lg); border-left: 4px solid var(--primary-color);">
+                            <h3 style="font-size: var(--fs-lg); margin-top: 0;">💡 Weekly Training Distribution (Recommendations)</h3>
+                            <ul style="font-size: var(--fs-sm); line-height: 1.8;">
+                                <li><strong>Zone 1-2 (Easy):</strong> 70-80% of training time → Build base, recovery</li>
+                                <li><strong>Zone 3 (Tempo):</strong> 10-15% of training time → Build speed</li>
+                                <li><strong>Zone 4-5 (Hard):</strong> 5-10% of training time → Maximum effort workouts</li>
+                            </ul>
+                            <p style="font-size: var(--fs-xs); color: var(--text-medium-gray); margin-top: var(--spacing-md); margin-bottom: 0;">
+                                ⚠️ Most people do too much Zone 3-5 work. Focus on Zone 2 training for aerobic base building.
+                            </p>
+                        </div>
+
+                        <!-- Insights -->
+                        <div class="insights-section">
+                            <div class="insights-title">Quick Tips</div>
+                            <ul class="insights-list">
+                                <li id="insight1">--</li>
+                                <li id="insight2">--</li>
+                                <li id="insight3">--</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-placeholder">
+                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELATED TOOLS -->
+        <section class="tools-section">
+            <div class="container">
+                <h2 class="section-title">Related Tools</h2>
+                <div class="related-tools-grid">
+                    <a href="bmi.html" class="related-tool-link">
+                        <strong>BMI Calculator</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Quick weight category check</p>
+                    </a>
+                    <a href="tdee.html" class="related-tool-link">
+                        <strong>TDEE Calculator</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Daily calorie burn</p>
+                    </a>
+                    <a href="bodyfat.html" class="related-tool-link">
+                        <strong>Body Fat %</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Body composition estimator</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-placeholder">
+                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELATED ARTICLES -->
+        <section class="featured-articles-section">
+            <div class="container">
+                <h2 class="section-title">Learn More About Heart Rate Training</h2>
+                <div class="featured-articles-grid">
+                    <article class="featured-article-card">
+                        <div class="article-header">
+                            <span class="article-category">Cardio</span>
+                            <h3 class="article-title">Heart Rate Training Zones Explained</h3>
+                        </div>
+                        <p class="article-excerpt">Complete guide to understanding training zones and how to use them to optimize your cardio workouts.</p>
+                        <div class="article-meta">
+                            <span class="read-time">7 min read</span>
+                        </div>
+                        <a href="../articles/heart-rate-zones.html" class="article-link">Read Article →</a>
+                    </article>
+
+                    <article class="featured-article-card">
+                        <div class="article-header">
+                            <span class="article-category">Training</span>
+                            <h3 class="article-title">Building Your Aerobic Base: The Zone 2 Strategy</h3>
+                        </div>
+                        <p class="article-excerpt">Why most athletes train too hard, and how to use Zone 2 training to build sustainable fitness.</p>
+                        <div class="article-meta">
+                            <span class="read-time">6 min read</span>
+                        </div>
+                        <a href="../articles/zone-2-training.html" class="article-link">Read Article →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- AD BANNER -->
+    <section class="ad-section">
+        <div class="container">
+            <div class="ad-placeholder">
+                <p style="color: #999; font-size: 14px;">Advertisement</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FitIQ Hub</h4>
+                    <p>Health & fitness insights + tools</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="../articles/articles.html">Articles</a></li>
+                        <li><a href="../tools.html">Tools</a></li>
+                        <li><a href="../about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="../cookie-policy.html">Cookie</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FitIQ Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script src="../js/heartrate.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
