@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Ideal Weight Calculator - Calculate your ideal body weight using multiple scientific formulas. Compare results and find your healthy weight range.">
+    <meta name="keywords" content="ideal weight calculator, healthy weight, target weight, body weight calculator, IBW calculator">
+    <meta name="author" content="FitIQ Hub">
+    
+    <title>Ideal Weight Calculator - FitIQ Hub</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../public/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DCS2X2HWTJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-DCS2X2HWTJ');
+    </script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/globals.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <img src="../public/logo-dark.png" alt="FitIQ Hub" class="logo-img">
+                    <span class="logo-text">FitIQ Hub</span>
+                </a>
+                <nav class="nav">
+                    <a href="../articles/articles.html" class="nav-link">Articles</a>
+                    <a href="../tools.html" class="nav-link">Tools</a>
+                    <a href="../about.html" class="nav-link">About</a>
+                </nav>
+                <button class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- CALCULATOR SECTION -->
+        <section class="tools-section">
+            <div class="container">
+                <div class="calculator-wrapper">
+                    <h1 class="calculator-title">Ideal Weight Calculator</h1>
+                    <p class="calculator-description">Calculate your ideal body weight using multiple scientific formulas. Compare results from different methods to find your healthy weight range.</p>
+
+                    <!-- INPUT FORM -->
+                    <form id="idealWeightForm" onsubmit="return false;">
+                        <!-- Gender Selection -->
+                        <div class="input-group">
+                            <label>Gender</label>
+                            <div style="display: flex; gap: var(--spacing-md);">
+                                <label style="display: flex; align-items: center; gap: var(--spacing-sm); font-weight: var(--fw-regular); margin-bottom: 0;">
+                                    <input type="radio" name="gender" value="male" checked>
+                                    Male
+                                </label>
+                                <label style="display: flex; align-items: center; gap: var(--spacing-sm); font-weight: var(--fw-regular); margin-bottom: 0;">
+                                    <input type="radio" name="gender" value="female">
+                                    Female
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Unit Selection -->
+                        <div class="input-group">
+                            <label>Measurement Units</label>
+                            <div style="display: flex; gap: var(--spacing-md);">
+                                <label style="display: flex; align-items: center; gap: var(--spacing-sm); font-weight: var(--fw-regular); margin-bottom: 0;">
+                                    <input type="radio" name="unit" value="metric" checked>
+                                    Metric (cm)
+                                </label>
+                                <label style="display: flex; align-items: center; gap: var(--spacing-sm); font-weight: var(--fw-regular); margin-bottom: 0;">
+                                    <input type="radio" name="unit" value="imperial">
+                                    Imperial (inches)
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Height Input -->
+                        <div class="input-group">
+                            <label for="height">Height <span id="heightUnit">(cm)</span></label>
+                            <input type="number" id="height" placeholder="e.g., 175" step="0.1" required>
+                            <span class="input-hint">Enter your height</span>
+                        </div>
+
+                        <!-- Age Input (optional for context) -->
+                        <div class="input-group">
+                            <label for="age">Age (years) - Optional</label>
+                            <input type="number" id="age" placeholder="e.g., 30" min="1" max="120">
+                            <span class="input-hint">Helps provide age-specific context</span>
+                        </div>
+
+                        <!-- Frame Size (optional) -->
+                        <div class="input-group">
+                            <label for="frame">Body Frame - Optional</label>
+                            <select id="frame">
+                                <option value="medium">Medium Frame (Standard)</option>
+                                <option value="small">Small Frame</option>
+                                <option value="large">Large Frame</option>
+                            </select>
+                            <span class="input-hint">Your bone structure affects ideal weight</span>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="button-group">
+                            <button type="button" class="calculate-btn" onclick="calculateIdealWeight()">Calculate Ideal Weight</button>
+                            <button type="reset" class="reset-btn">Reset</button>
+                        </div>
+                    </form>
+
+                    <!-- RESULTS SECTION -->
+                    <div id="resultsSection" class="results-section">
+                        <h2 class="results-title">Your Ideal Weight Results</h2>
+                        
+                        <!-- Average Result Card -->
+                        <div class="result-card" style="background: linear-gradient(135deg, rgba(0, 230, 118, 0.1), rgba(0, 184, 169, 0.05)); border: 2px solid var(--primary-color);">
+                            <div class="result-label">Recommended Ideal Weight Range</div>
+                            <div class="result-value" id="idealWeightRange" style="font-size: var(--fs-3xl);">--</div>
+                            <div class="result-description">Based on average of multiple scientific formulas</div>
+                        </div>
+
+                        <!-- Individual Formula Results -->
+                        <div style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--bg-dark); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+                            <h3 style="font-size: var(--fs-lg); margin-bottom: var(--spacing-md); color: var(--primary-color);">Results by Formula</h3>
+                            <div style="display: grid; gap: var(--spacing-md);">
+                                
+                                <!-- Robinson Formula -->
+                                <div style="padding: var(--spacing-md); background-color: var(--bg-darker); border-left: 3px solid #4CAF50; border-radius: var(--radius-md);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xs);">
+                                        <div style="font-weight: var(--fw-bold); color: var(--text-white);">Robinson Formula (1983)</div>
+                                        <div style="font-size: var(--fs-xl); font-weight: var(--fw-black); color: #4CAF50;" id="robinsonResult">--</div>
+                                    </div>
+                                    <div style="font-size: var(--fs-xs); color: var(--text-medium-gray);">Most widely used modern formula</div>
+                                </div>
+
+                                <!-- Miller Formula -->
+                                <div style="padding: var(--spacing-md); background-color: var(--bg-darker); border-left: 3px solid #2196F3; border-radius: var(--radius-md);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xs);">
+                                        <div style="font-weight: var(--fw-bold); color: var(--text-white);">Miller Formula (1983)</div>
+                                        <div style="font-size: var(--fs-xl); font-weight: var(--fw-black); color: #2196F3;" id="millerResult">--</div>
+                                    </div>
+                                    <div style="font-size: var(--fs-xs); color: var(--text-medium-gray);">Similar to Robinson with slight adjustments</div>
+                                </div>
+
+                                <!-- Devine Formula -->
+                                <div style="padding: var(--spacing-md); background-color: var(--bg-darker); border-left: 3px solid #FF9800; border-radius: var(--radius-md);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xs);">
+                                        <div style="font-weight: var(--fw-bold); color: var(--text-white);">Devine Formula (1974)</div>
+                                        <div style="font-size: var(--fs-xl); font-weight: var(--fw-black); color: #FF9800;" id="devineResult">--</div>
+                                    </div>
+                                    <div style="font-size: var(--fs-xs); color: var(--text-medium-gray);">Classic formula, widely used in medicine</div>
+                                </div>
+
+                                <!-- Hamwi Formula -->
+                                <div style="padding: var(--spacing-md); background-color: var(--bg-darker); border-left: 3px solid #9C27B0; border-radius: var(--radius-md);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xs);">
+                                        <div style="font-weight: var(--fw-bold); color: var(--text-white);">Hamwi Formula (1964)</div>
+                                        <div style="font-size: var(--fs-xl); font-weight: var(--fw-black); color: #9C27B0;" id="hamwiResult">--</div>
+                                    </div>
+                                    <div style="font-size: var(--fs-xs); color: var(--text-medium-gray);">Quick estimation method</div>
+                                </div>
+
+                                <!-- Healthy BMI Range -->
+                                <div style="padding: var(--spacing-md); background-color: var(--bg-darker); border-left: 3px solid #00E676; border-radius: var(--radius-md);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xs);">
+                                        <div style="font-weight: var(--fw-bold); color: var(--text-white);">Healthy BMI Range</div>
+                                        <div style="font-size: var(--fs-xl); font-weight: var(--fw-black); color: #00E676;" id="bmiRangeResult">--</div>
+                                    </div>
+                                    <div style="font-size: var(--fs-xs); color: var(--text-medium-gray);">Weight range for BMI 18.5 - 24.9</div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- INSIGHTS -->
+                        <div class="insights-section">
+                            <div class="insights-title">Understanding Your Results</div>
+                            <ul class="insights-list">
+                                <li id="insight1">Different formulas exist because no single formula perfectly predicts ideal weight for everyone</li>
+                                <li id="insight2">Your frame size, muscle mass, and body composition matter more than any single number</li>
+                                <li id="insight3">Use these results as a general guide, not an absolute target</li>
+                                <li id="insight4">Consult with healthcare professionals for personalized weight goals</li>
+                            </ul>
+                        </div>
+
+                        <!-- CONTEXT BOX -->
+                        <div style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 152, 0, 0.05)); border-left: 4px solid #FF9800; border-radius: var(--radius-md);">
+                            <h3 style="font-size: var(--fs-base); margin-bottom: var(--spacing-md); color: #FF9800; font-weight: var(--fw-bold);">⚠️ Important Context</h3>
+                            <p style="margin: 0; color: var(--text-light-gray); font-size: var(--fs-sm); line-height: 1.7;">These formulas provide general guidelines but don't account for muscle mass, body composition, or individual health factors. Athletes with high muscle mass may exceed these weights while remaining healthy. Body fat percentage and overall fitness are often better indicators of health than weight alone.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-placeholder">
+                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELATED TOOLS -->
+        <section class="tools-section">
+            <div class="container">
+                <h2 class="section-title">Related Tools</h2>
+                <div class="related-tools-grid">
+                    <a href="bmi.html" class="related-tool-link">
+                        <strong>BMI Calculator</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Check your current BMI category</p>
+                    </a>
+                    <a href="bodyfat.html" class="related-tool-link">
+                        <strong>Body Fat %</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Better than weight alone</p>
+                    </a>
+                    <a href="tdee.html" class="related-tool-link">
+                        <strong>TDEE Calculator</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Calculate calorie needs</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELATED ARTICLES -->
+        <section class="featured-articles-section">
+            <div class="container">
+                <h2 class="section-title">Learn More</h2>
+                <div class="featured-articles-grid">
+                    <article class="featured-article-card">
+                        <div class="article-header">
+                            <span class="article-category">Body Composition</span>
+                            <h3 class="article-title">Body Fat % vs BMI: Why One Matters More</h3>
+                        </div>
+                        <p class="article-excerpt">Learn why body composition is a better indicator than weight alone.</p>
+                        <div class="article-meta">
+                            <span class="read-time">6 min read</span>
+                        </div>
+                        <a href="../articles/better-measurements.html" class="article-link">Read Article →</a>
+                    </article>
+
+                    <article class="featured-article-card">
+                        <div class="article-header">
+                            <span class="article-category">Nutrition</span>
+                            <h3 class="article-title">How Many Calories You Actually Burn Daily</h3>
+                        </div>
+                        <p class="article-excerpt">Discover the science behind TDEE and how to reach your weight goals.</p>
+                        <div class="article-meta">
+                            <span class="read-time">7 min read</span>
+                        </div>
+                        <a href="../articles/healthy-targets.html" class="article-link">Read Article →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FitIQ Hub</h4>
+                    <p>Health & fitness insights + tools</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="../articles/articles.html">Articles</a></li>
+                        <li><a href="../tools.html">Tools</a></li>
+                        <li><a href="../about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="../cookie-policy.html">Cookie</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FitIQ Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script src="../js/ideal-weight.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav').classList.toggle('active');
+        });
+
+        // Unit conversion on radio change
+        document.querySelectorAll('input[name="unit"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'metric') {
+                    document.getElementById('heightUnit').textContent = '(cm)';
+                    document.getElementById('height').placeholder = 'e.g., 175';
+                } else {
+                    document.getElementById('heightUnit').textContent = '(inches)';
+                    document.getElementById('height').placeholder = 'e.g., 69';
+                }
+                document.getElementById('resultsSection').classList.remove('show');
+            });
+        });
+    </script>
+</body>
+</html>
