@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Calorie Deficit Calculator - Plan your weight loss journey with personalized calorie targets, timeline estimates, and sustainable deficit recommendations.">
+    <meta name="keywords" content="calorie deficit calculator, weight loss calculator, calorie deficit, fat loss, weight loss plan">
+    <meta name="author" content="FitIQ Hub">
+    
+    <title>Calorie Deficit Calculator - FitIQ Hub</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../public/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DCS2X2HWTJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-DCS2X2HWTJ');
+    </script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/globals.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <img src="../public/logo-dark.png" alt="FitIQ Hub" class="logo-img">
+                    <span class="logo-text">FitIQ Hub</span>
+                </a>
+                <nav class="nav">
+                    <a href="../articles/articles.html" class="nav-link">Articles</a>
+                    <a href="../tools.html" class="nav-link">Tools</a>
+                    <a href="../about.html" class="nav-link">About</a>
+                </nav>
+                <button class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- CALCULATOR SECTION -->
+        <section class="tools-section">
+            <div class="container">
+                <div class="calculator-wrapper">
+                    <h1 class="calculator-title">Calorie Deficit Calculator</h1>
+                    <p class="calculator-description">Calculate your optimal calorie deficit for sustainable weight loss. Get personalized daily calorie targets and realistic timelines based on your goals.</p>
+
+                    <!-- INPUT FORM -->
+                    <form id="deficitForm" onsubmit="return false;">
+                        <!-- Gender Selection -->
+                        <div class="input-group">
+                            <label>Gender</label>
+                            <div style="display: flex; gap: var(--spacing-md);">
+                                <label style="display: flex; align-items: center; gap: var(--spacing-sm); font-weight: var(--fw-regular); margin-bottom: 0;">
+                                    <input type="radio" name="gender" value="male" checked>
+                                    Male
+                                </label>
+                                <label style="display: flex; align-items: center; gap: var(--spacing-sm); font-weight: var(--fw-regular); margin-bottom: 0;">
+                                    <input type="radio" name="gender" value="female">
+                                    Female
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Unit Selection -->
+                        <div class="input-group">
+                            <label>Measurement Units</label>
+                            <div style="display: flex; gap: var(--spacing-md);">
+                                <label style="display: flex; align-items: center; gap: var(--spacing-sm); font-weight: var(--fw-regular); margin-bottom: 0;">
+                                    <input type="radio" name="unit" value="metric" checked>
+                                    Metric (kg, cm)
+                                </label>
+                                <label style="display: flex; align-items: center; gap: var(--spacing-sm); font-weight: var(--fw-regular); margin-bottom: 0;">
+                                    <input type="radio" name="unit" value="imperial">
+                                    Imperial (lbs, inches)
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Age Input -->
+                        <div class="input-group">
+                            <label for="age">Age (years)</label>
+                            <input type="number" id="age" placeholder="e.g., 30" min="15" max="120" required>
+                            <span class="input-hint">Your current age</span>
+                        </div>
+
+                        <!-- Current Weight -->
+                        <div class="input-group">
+                            <label for="currentWeight">Current Weight <span id="weightUnit">(kg)</span></label>
+                            <input type="number" id="currentWeight" placeholder="e.g., 80" step="0.1" required>
+                            <span class="input-hint">Your starting weight</span>
+                        </div>
+
+                        <!-- Goal Weight -->
+                        <div class="input-group">
+                            <label for="goalWeight">Goal Weight <span id="goalWeightUnit">(kg)</span></label>
+                            <input type="number" id="goalWeight" placeholder="e.g., 70" step="0.1" required>
+                            <span class="input-hint">Your target weight</span>
+                        </div>
+
+                        <!-- Height Input -->
+                        <div class="input-group">
+                            <label for="height">Height <span id="heightUnit">(cm)</span></label>
+                            <input type="number" id="height" placeholder="e.g., 175" step="0.1" required>
+                            <span class="input-hint">Your height</span>
+                        </div>
+
+                        <!-- Activity Level -->
+                        <div class="input-group">
+                            <label for="activity">Activity Level</label>
+                            <select id="activity" required>
+                                <option value="1.2">Sedentary (little or no exercise)</option>
+                                <option value="1.375">Lightly Active (light exercise 1-3 days/week)</option>
+                                <option value="1.55" selected>Moderately Active (moderate exercise 3-5 days/week)</option>
+                                <option value="1.725">Very Active (intense exercise 6-7 days/week)</option>
+                                <option value="1.9">Extremely Active (physical job or intense training)</option>
+                            </select>
+                            <span class="input-hint">Select your typical activity level</span>
+                        </div>
+
+                        <!-- Weight Loss Rate -->
+                        <div class="input-group">
+                            <label for="rate">Desired Weight Loss Rate</label>
+                            <select id="rate" required>
+                                <option value="conservative">Conservative (0.5 lbs/week or 0.25 kg/week)</option>
+                                <option value="moderate" selected>Moderate (1 lb/week or 0.5 kg/week)</option>
+                                <option value="aggressive">Aggressive (1.5 lbs/week or 0.75 kg/week)</option>
+                                <option value="maximum">Maximum Safe (2 lbs/week or 1 kg/week)</option>
+                            </select>
+                            <span class="input-hint">Slower is more sustainable and preserves muscle</span>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="button-group">
+                            <button type="button" class="calculate-btn" onclick="calculateDeficit()">Calculate Deficit Plan</button>
+                            <button type="reset" class="reset-btn">Reset</button>
+                        </div>
+                    </form>
+
+                    <!-- RESULTS SECTION -->
+                    <div id="resultsSection" class="results-section">
+                        <h2 class="results-title">Your Weight Loss Plan</h2>
+                        
+                        <!-- Primary Calorie Target -->
+                        <div class="result-card" style="background: linear-gradient(135deg, rgba(0, 230, 118, 0.1), rgba(0, 184, 169, 0.05)); border: 2px solid var(--primary-color);">
+                            <div class="result-label">Daily Calorie Target</div>
+                            <div class="result-value" id="targetCalories" style="font-size: var(--fs-4xl);">--</div>
+                            <div class="result-description" id="deficitAmount">--</div>
+                        </div>
+
+                        <!-- Weight Loss Timeline -->
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-xl);">
+                            
+                            <div class="result-card">
+                                <div class="result-label">Total Weight to Lose</div>
+                                <div class="result-value" id="totalLoss" style="font-size: var(--fs-2xl); color: #FF9800;">--</div>
+                            </div>
+
+                            <div class="result-card">
+                                <div class="result-label">Estimated Timeline</div>
+                                <div class="result-value" id="timeline" style="font-size: var(--fs-2xl); color: #2196F3;">--</div>
+                            </div>
+
+                            <div class="result-card">
+                                <div class="result-label">Goal Date</div>
+                                <div class="result-value" id="goalDate" style="font-size: var(--fs-lg); color: #4CAF50;">--</div>
+                            </div>
+
+                        </div>
+
+                        <!-- Calorie Breakdown -->
+                        <div style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--bg-dark); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+                            <h3 style="font-size: var(--fs-lg); margin-bottom: var(--spacing-md); color: var(--primary-color);">Your Calorie Breakdown</h3>
+                            <div style="display: grid; gap: var(--spacing-md);">
+                                
+                                <!-- Current TDEE -->
+                                <div style="padding: var(--spacing-md); background-color: var(--bg-darker); border-left: 3px solid #2196F3; border-radius: var(--radius-md);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div>
+                                            <div style="font-weight: var(--fw-bold); color: var(--text-white); margin-bottom: var(--spacing-xs);">Current TDEE</div>
+                                            <div style="font-size: var(--fs-xs); color: var(--text-medium-gray);">Maintenance calories at current weight</div>
+                                        </div>
+                                        <div style="font-size: var(--fs-xl); font-weight: var(--fw-black); color: #2196F3;" id="currentTDEE">--</div>
+                                    </div>
+                                </div>
+
+                                <!-- Goal TDEE -->
+                                <div style="padding: var(--spacing-md); background-color: var(--bg-darker); border-left: 3px solid #4CAF50; border-radius: var(--radius-md);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div>
+                                            <div style="font-weight: var(--fw-bold); color: var(--text-white); margin-bottom: var(--spacing-xs);">Goal Weight TDEE</div>
+                                            <div style="font-size: var(--fs-xs); color: var(--text-medium-gray);">Maintenance calories at goal weight</div>
+                                        </div>
+                                        <div style="font-size: var(--fs-xl); font-weight: var(--fw-black); color: #4CAF50;" id="goalTDEE">--</div>
+                                    </div>
+                                </div>
+
+                                <!-- Daily Deficit -->
+                                <div style="padding: var(--spacing-md); background-color: var(--bg-darker); border-left: 3px solid #FF9800; border-radius: var(--radius-md);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div>
+                                            <div style="font-weight: var(--fw-bold); color: var(--text-white); margin-bottom: var(--spacing-xs);">Daily Calorie Deficit</div>
+                                            <div style="font-size: var(--fs-xs); color: var(--text-medium-gray);">Calories below maintenance</div>
+                                        </div>
+                                        <div style="font-size: var(--fs-xl); font-weight: var(--fw-black); color: #FF9800;" id="dailyDeficit">--</div>
+                                    </div>
+                                </div>
+
+                                <!-- Weekly Deficit -->
+                                <div style="padding: var(--spacing-md); background-color: var(--bg-darker); border-left: 3px solid #F44336; border-radius: var(--radius-md);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div>
+                                            <div style="font-weight: var(--fw-bold); color: var(--text-white); margin-bottom: var(--spacing-xs);">Weekly Calorie Deficit</div>
+                                            <div style="font-size: var(--fs-xs); color: var(--text-medium-gray);">Total deficit per week</div>
+                                        </div>
+                                        <div style="font-size: var(--fs-xl); font-weight: var(--fw-black); color: #F44336;" id="weeklyDeficit">--</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Macro Recommendations -->
+                        <div style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--bg-dark); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+                            <h3 style="font-size: var(--fs-lg); margin-bottom: var(--spacing-md); color: var(--primary-color);">Recommended Macros</h3>
+                            <div style="display: grid; gap: var(--spacing-md);">
+                                
+                                <div style="padding: var(--spacing-md); background-color: var(--bg-darker); border-radius: var(--radius-md);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div>
+                                            <div style="font-weight: var(--fw-bold); color: var(--text-white);">Protein</div>
+                                            <div style="font-size: var(--fs-xs); color: var(--text-medium-gray);">Essential for muscle preservation</div>
+                                        </div>
+                                        <div style="font-size: var(--fs-lg); font-weight: var(--fw-bold); color: var(--primary-color);" id="proteinGrams">--</div>
+                                    </div>
+                                </div>
+
+                                <div style="padding: var(--spacing-md); background-color: var(--bg-darker); border-radius: var(--radius-md);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div>
+                                            <div style="font-weight: var(--fw-bold); color: var(--text-white);">Fats</div>
+                                            <div style="font-size: var(--fs-xs); color: var(--text-medium-gray);">For hormone health</div>
+                                        </div>
+                                        <div style="font-size: var(--fs-lg); font-weight: var(--fw-bold); color: var(--primary-color);" id="fatGrams">--</div>
+                                    </div>
+                                </div>
+
+                                <div style="padding: var(--spacing-md); background-color: var(--bg-darker); border-radius: var(--radius-md);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div>
+                                            <div style="font-weight: var(--fw-bold); color: var(--text-white);">Carbohydrates</div>
+                                            <div style="font-size: var(--fs-xs); color: var(--text-medium-gray);">For energy and performance</div>
+                                        </div>
+                                        <div style="font-size: var(--fs-lg); font-weight: var(--fw-bold); color: var(--primary-color);" id="carbGrams">--</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- INSIGHTS -->
+                        <div class="insights-section">
+                            <div class="insights-title">Weight Loss Tips</div>
+                            <ul class="insights-list">
+                                <li>Track your food intake consistently using an app like MyFitnessPal or Cronometer</li>
+                                <li>Weigh yourself daily (same time) and track weekly averages to avoid day-to-day fluctuations</li>
+                                <li>Prioritize protein (0.8-1g per lb body weight) to preserve muscle during weight loss</li>
+                                <li>Incorporate strength training 2-3x per week to maintain lean mass</li>
+                                <li>If weight loss stalls for 2+ weeks, reduce calories by 100-200 or increase activity</li>
+                                <li>Include diet breaks every 8-12 weeks at maintenance calories for metabolic recovery</li>
+                            </ul>
+                        </div>
+
+                        <!-- WARNINGS -->
+                        <div style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background: linear-gradient(135deg, rgba(244, 67, 54, 0.1), rgba(244, 67, 54, 0.05)); border-left: 4px solid #F44336; border-radius: var(--radius-md);">
+                            <h3 style="font-size: var(--fs-base); margin-bottom: var(--spacing-md); color: #F44336; font-weight: var(--fw-bold);">⚠️ Important Warnings</h3>
+                            <ul style="margin: 0; padding-left: var(--spacing-lg); color: var(--text-light-gray); font-size: var(--fs-sm); line-height: 1.7;">
+                                <li style="margin-bottom: var(--spacing-sm);">Never eat below 1200 calories/day (women) or 1500 calories/day (men) without medical supervision</li>
+                                <li style="margin-bottom: var(--spacing-sm);">Aggressive deficits increase risk of muscle loss, metabolic slowdown, and nutritional deficiencies</li>
+                                <li style="margin-bottom: var(--spacing-sm);">Weight loss isn't linear - expect plateaus and fluctuations</li>
+                                <li style="margin-bottom: 0;">Consult healthcare professionals before starting any weight loss program</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-placeholder">
+                    <p style="color: #999; font-size: 14px;">Advertisement</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELATED TOOLS -->
+        <section class="tools-section">
+            <div class="container">
+                <h2 class="section-title">Related Tools</h2>
+                <div class="related-tools-grid">
+                    <a href="tdee.html" class="related-tool-link">
+                        <strong>TDEE Calculator</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Calculate maintenance calories</p>
+                    </a>
+                    <a href="bodyfat.html" class="related-tool-link">
+                        <strong>Body Fat %</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Track composition changes</p>
+                    </a>
+                    <a href="bmi.html" class="related-tool-link">
+                        <strong>BMI Calculator</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Check weight category</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELATED ARTICLES -->
+        <section class="featured-articles-section">
+            <div class="container">
+                <h2 class="section-title">Learn More</h2>
+                <div class="featured-articles-grid">
+                    <article class="featured-article-card">
+                        <div class="article-header">
+                            <span class="article-category">Nutrition</span>
+                            <h3 class="article-title">How Many Calories You Actually Burn Daily</h3>
+                        </div>
+                        <p class="article-excerpt">Learn the science behind TDEE and calorie deficits for effective weight loss.</p>
+                        <div class="article-meta">
+                            <span class="read-time">7 min read</span>
+                        </div>
+                        <a href="../articles/healthy-targets.html" class="article-link">Read Article →</a>
+                    </article>
+
+                    <article class="featured-article-card">
+                        <div class="article-header">
+                            <span class="article-category">Body Composition</span>
+                            <h3 class="article-title">Body Fat % vs BMI: Why One Matters More</h3>
+                        </div>
+                        <p class="article-excerpt">Understand why body composition matters more than scale weight alone.</p>
+                        <div class="article-meta">
+                            <span class="read-time">6 min read</span>
+                        </div>
+                        <a href="../articles/better-measurements.html" class="article-link">Read Article →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FitIQ Hub</h4>
+                    <p>Health & fitness insights + tools</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="../articles/articles.html">Articles</a></li>
+                        <li><a href="../tools.html">Tools</a></li>
+                        <li><a href="../about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="../cookie-policy.html">Cookie</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FitIQ Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script src="../js/calorie-deficit.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav').classList.toggle('active');
+        });
+
+        // Unit conversion on radio change
+        document.querySelectorAll('input[name="unit"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'metric') {
+                    document.getElementById('weightUnit').textContent = '(kg)';
+                    document.getElementById('goalWeightUnit').textContent = '(kg)';
+                    document.getElementById('heightUnit').textContent = '(cm)';
+                    document.getElementById('currentWeight').placeholder = 'e.g., 80';
+                    document.getElementById('goalWeight').placeholder = 'e.g., 70';
+                    document.getElementById('height').placeholder = 'e.g., 175';
+                } else {
+                    document.getElementById('weightUnit').textContent = '(lbs)';
+                    document.getElementById('goalWeightUnit').textContent = '(lbs)';
+                    document.getElementById('heightUnit').textContent = '(inches)';
+                    document.getElementById('currentWeight').placeholder = 'e.g., 176';
+                    document.getElementById('goalWeight').placeholder = 'e.g., 154';
+                    document.getElementById('height').placeholder = 'e.g., 69';
+                }
+                document.getElementById('resultsSection').classList.remove('show');
+            });
+        });
+    </script>
+</body>
+</html>
