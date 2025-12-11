@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Year-End Fitness Progress Chart - Visualize your fitness journey with goal tracking, milestone celebration, and actionable 2025 planning.">
+    <meta name="keywords" content="fitness progress chart, year review, fitness goals, workout tracker, fitness planner, New Year fitness">
+    <meta name="author" content="FitIQ Hub">
+    
+    <title>Year-End Fitness Progress Chart - FitIQ Hub</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../public/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DCS2X2HWTJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-DCS2X2HWTJ');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4193461708628894"
+    crossorigin="anonymous"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/globals.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    
+    <style>
+        .stat-card {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.1), transparent);
+            border: 1px solid var(--primary-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: var(--fs-3xl);
+            font-weight: var(--fw-black);
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .stat-label {
+            font-size: var(--fs-sm);
+            color: var(--text-light-gray);
+        }
+        
+        .metric-card {
+            background-color: var(--bg-darker);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .metric-change {
+            font-size: var(--fs-xl);
+            font-weight: var(--fw-black);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+        }
+        
+        .metric-change.positive {
+            color: #4CAF50;
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+        
+        .metric-change.negative {
+            color: #F44336;
+            background-color: rgba(244, 67, 54, 0.1);
+        }
+        
+        .achievement-badge {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-md);
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.2), rgba(0, 184, 169, 0.1));
+            border: 1px solid var(--primary-color);
+            border-radius: var(--radius-lg);
+            font-weight: var(--fw-bold);
+            font-size: var(--fs-sm);
+            margin: var(--spacing-xs);
+        }
+        
+        .milestone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .milestone-card {
+            background-color: var(--bg-darker);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .milestone-icon {
+            font-size: var(--fs-3xl);
+            margin-bottom: var(--spacing-sm);
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <img src="../public/logo-dark.png" alt="FitIQ Hub" class="logo-img">
+                    <span class="logo-text">FitIQ Hub</span>
+                </a>
+                <nav class="nav">
+                    <a href="../articles/articles.html" class="nav-link">Articles</a>
+                    <a href="../tools.html" class="nav-link">Tools</a>
+                    <a href="../about.html" class="nav-link">About</a>
+                </nav>
+                <button class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <section class="tools-section">
+            <div class="container">
+                <div class="calculator-wrapper" style="max-width: 900px;">
+                    <h1 class="calculator-title">📊 Year-End Fitness Progress Chart</h1>
+                    <p class="calculator-description">Reflect on your 2024 fitness journey and set powerful goals for 2025. Track your progress across key metrics and celebrate every milestone.</p>
+
+                    <!-- INPUT FORM -->
+                    <form id="progressForm" onsubmit="return false;">
+                        
+                        <!-- Body Weight Progress -->
+                        <div class="input-group">
+                            <label>💪 Body Weight Progress</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md);">
+                                <div>
+                                    <input type="number" id="startWeight" placeholder="Starting weight" step="0.1" required>
+                                    <span class="input-hint">Jan 2024 (lbs or kg)</span>
+                                </div>
+                                <div>
+                                    <input type="number" id="endWeight" placeholder="Current weight" step="0.1" required>
+                                    <span class="input-hint">Dec 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Body Fat % Progress -->
+                        <div class="input-group">
+                            <label>🔥 Body Fat % Progress (Optional)</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md);">
+                                <div>
+                                    <input type="number" id="startBodyFat" placeholder="Starting BF%" step="0.1" min="2" max="60">
+                                    <span class="input-hint">Jan 2024 (%)</span>
+                                </div>
+                                <div>
+                                    <input type="number" id="endBodyFat" placeholder="Current BF%" step="0.1" min="2" max="60">
+                                    <span class="input-hint">Dec 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Workout Frequency -->
+                        <div class="input-group">
+                            <label>📅 Workout Frequency</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md);">
+                                <div>
+                                    <input type="number" id="startWorkouts" placeholder="Workouts/week" step="0.5" min="0" max="14" required>
+                                    <span class="input-hint">Jan 2024 average</span>
+                                </div>
+                                <div>
+                                    <input type="number" id="endWorkouts" placeholder="Workouts/week" step="0.5" min="0" max="14" required>
+                                    <span class="input-hint">Dec 2024 average</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Primary Goal -->
+                        <div class="input-group">
+                            <label>🎯 Primary Goal for 2024</label>
+                            <select id="primaryGoal" required>
+                                <option value="">Select your main goal...</option>
+                                <option value="weight-loss">Lose Weight / Fat</option>
+                                <option value="muscle-gain">Build Muscle</option>
+                                <option value="strength">Increase Strength</option>
+                                <option value="endurance">Improve Endurance</option>
+                                <option value="consistency">Stay Consistent</option>
+                                <option value="health">General Health</option>
+                            </select>
+                        </div>
+
+                        <!-- Goal Achievement -->
+                        <div class="input-group">
+                            <label>✅ Goal Achievement</label>
+                            <select id="goalAchievement" required>
+                                <option value="">How close are you?</option>
+                                <option value="100">100% - Crushed it! 🏆</option>
+                                <option value="75">75% - Nearly there</option>
+                                <option value="50">50% - Halfway</option>
+                                <option value="25">25% - Started strong</option>
+                                <option value="0">0% - Still learning</option>
+                            </select>
+                        </div>
+
+                        <!-- Biggest Win -->
+                        <div class="input-group">
+                            <label>🌟 Your Biggest Win This Year (Optional)</label>
+                            <textarea id="biggestWin" placeholder="What are you most proud of? (e.g., 'Ran my first 5K', 'Lost 30 lbs')" rows="3"></textarea>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="button-group">
+                            <button type="button" class="calculate-btn" onclick="generateChart()">Generate My Progress Chart 🚀</button>
+                            <button type="reset" class="reset-btn">Reset</button>
+                        </div>
+                    </form>
+
+                    <!-- RESULTS SECTION -->
+                    <div id="resultsSection" class="results-section">
+                        <h2 class="results-title">🎉 Your 2024 Fitness Journey</h2>
+
+                        <!-- Summary Stats -->
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-xl);" id="summaryStats"></div>
+
+                        <!-- Progress Metrics -->
+                        <div id="progressMetrics"></div>
+
+                        <!-- Achievement Badges -->
+                        <div style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--bg-dark); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+                            <h3 style="font-size: var(--fs-lg); margin-bottom: var(--spacing-md); text-align: center;">🏆 Your 2024 Achievements</h3>
+                            <div id="achievementBadges" style="text-align: center;"></div>
+                        </div>
+
+                        <!-- Milestones -->
+                        <div style="margin-top: var(--spacing-xl);">
+                            <h3 style="font-size: var(--fs-lg); margin-bottom: var(--spacing-md);">✨ Key Milestones</h3>
+                            <div class="milestone-grid" id="milestoneGrid"></div>
+                        </div>
+
+                        <!-- 2025 Planning -->
+                        <div style="margin-top: var(--spacing-2xl); padding: var(--spacing-xl); background: linear-gradient(135deg, rgba(0, 230, 118, 0.05), transparent); border: 1px solid var(--primary-color); border-radius: var(--radius-lg);">
+                            <h3 style="font-size: var(--fs-2xl); font-weight: var(--fw-bold); margin-bottom: var(--spacing-lg); text-align: center;">🎯 Ready for 2025?</h3>
+                            <div id="goalsList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELATED TOOLS -->
+        <section class="tools-section">
+            <div class="container">
+                <h2 class="section-title">Related Tools</h2>
+                <div class="related-tools-grid">
+                    <a href="bmi.html" class="related-tool-link">
+                        <strong>BMI Calculator</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Track your weight category</p>
+                    </a>
+                    <a href="bodyfat.html" class="related-tool-link">
+                        <strong>Body Fat %</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Measure body composition</p>
+                    </a>
+                    <a href="tdee.html" class="related-tool-link">
+                        <strong>TDEE Calculator</strong>
+                        <p style="color: var(--text-light-gray); margin-top: var(--spacing-sm); font-size: var(--fs-sm);">Plan your calorie targets</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FitIQ Hub</h4>
+                    <p>Health & fitness insights + tools</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="../articles/articles.html">Articles</a></li>
+                        <li><a href="../tools.html">Tools</a></li>
+                        <li><a href="../about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="../cookie-policy.html">Cookie</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FitIQ Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/progress-chart.js"></script>
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
