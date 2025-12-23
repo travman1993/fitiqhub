@@ -268,6 +268,77 @@
     flex-grow: 1;
 }
 
+.daily-insight {
+    padding: 3rem 0;
+    background: linear-gradient(135deg, #f7f9fc, #eef3f8);
+    border-bottom: 1px solid #e3e8ef;
+}
+
+.insight-card {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 2.25rem;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    position: relative;
+}
+
+.insight-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 6px;
+    background: linear-gradient(
+        180deg,
+        #3b82f6,
+        #22c55e
+    );
+    border-radius: 16px 0 0 16px;
+}
+
+.insight-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+    color: #0f172a;
+}
+
+.insight-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #334155;
+    margin-bottom: 1rem;
+}
+
+.insight-meta {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #64748b;
+}
+
+/* Mobile optimization */
+@media (max-width: 640px) {
+    .insight-card {
+        padding: 1.5rem;
+    }
+
+    .insight-title {
+        font-size: 1.15rem;
+    }
+
+    .insight-text {
+        font-size: 1rem;
+    }
+}
+
 /* ============================================
    GENERAL CARD COMPONENT
    ============================================ */
